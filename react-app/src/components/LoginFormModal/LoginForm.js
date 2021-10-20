@@ -66,7 +66,6 @@ const LoginForm = ({ onClose }) => {
                     <button type='submit'>Login</button>
                 </div>
             </form>
-            <p></p>
         </>
     );
 };

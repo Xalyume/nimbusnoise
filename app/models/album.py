@@ -10,7 +10,7 @@ class Album(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
 
-    user = db.relationship('User', back_populates='images', uselist=False)
+    user = db.relationship('User', back_populates='albums', uselist=False)
     songs = db.relationship('Song', back_populates='album', cascade="all, delete-orphan")
 
     def to_dict(self):

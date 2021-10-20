@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import NavBar from './components/NavBar';
-// import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import AlbumForm from './components/AlbumForm';
 import SongForm from './components/SongForm';
 import HomePage from './components/HomePage'
+import AlbumPage from './components/AlbumPage'
 import { authenticate } from './store/session';
 
 function App() {
@@ -47,9 +47,10 @@ function App() {
 					<NavBar />
 					<SongForm />
 				</Route>
-				{/* <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute> */}
+				<Route path='/albums/:albumId' exact={true}>
+					<NavBar />
+					<AlbumPage />
+				</Route>
 			</Switch>
 		</BrowserRouter>
 	);

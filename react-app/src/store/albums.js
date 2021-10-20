@@ -12,7 +12,6 @@ const get = (album) => ({
 })
 
 export const addAlbum = (album) => async (dispatch) => {
-    console.log(album)
 
     const res = await fetch('/api/albums', {
         method: "POST",
@@ -24,13 +23,20 @@ export const addAlbum = (album) => async (dispatch) => {
 
     if (res.ok) {
         const newAlbum = await res.json();
-
         dispatch(add(newAlbum));
 
-        return { ok: true };
+        return newAlbum;
     }
 }
 
+export const getAlbum = () => async (dispatch) => {
+
+    const res = await fetch(`/api/albums`);
+    if (res.ok) {
+        const query = await res.json();
+        dispatch(get(query));
+    }
+}
 
 const initialState = {};
 
@@ -40,6 +46,11 @@ export default function reducer(state = initialState, action) {
         case ADD_ALBUM:
             newState = Object.assign({}, state)
             newState[action.payload.id] = action.payload;
+            return newState;
+        case GET_ALBUMS:
+            newState = Object.assign({}, state)
+            const allAlbums = action.payload;
+            Object.values(allAlbums).forEach((album) => { newState[album.id] = album; });
             return newState;
         default:
             return state;

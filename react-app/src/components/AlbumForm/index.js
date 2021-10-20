@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addAlbum } from '../../store/album'
+import { addAlbum } from '../../store/albums'
 
 function AlbumForm() {
     const history = useHistory();
@@ -38,7 +38,7 @@ function AlbumForm() {
             let res = await dispatch(addAlbum(album));
 
             if (res) {
-                history.push('/users')
+                history.push(`/albums/${res.id}`)
             }
         }
     }

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import LoginFormModal from '../LoginFormModal'
 import SignUpModal from '../SignUpModal/';
 
-
 function HomePage() {
     const history = useHistory();
 

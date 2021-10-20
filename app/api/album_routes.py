@@ -11,10 +11,10 @@ album_routes = Blueprint('albums', __name__)
 @login_required
 def albums():
     '''
-    GET route to get a all
+    GET route for specific album.
     '''
     albums = Album.query.all()
-    return albums.to_dict()
+    return {album.id: album.to_dict() for album in albums}
 
 
 @album_routes.route('', methods=["POST"])
@@ -26,8 +26,6 @@ def add_album():
     user_id = current_user.get_id()
     form = AlbumForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-
-    print("*"*8, form.data)
 
     if form.validate_on_submit():
         album = Album(

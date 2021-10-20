@@ -14,10 +14,16 @@ const NavBar = () => {
       return (
         <>
           <li>
-            <LogoutButton />
+            <NavLink to='/add-album'>Add an Album</NavLink>
+          </li>
+          <li>
+            <NavLink to='/add-song'>Upload a Song</NavLink>
           </li>
           <li>
             Username: {currentUser.username}
+          </li>
+          <li>
+            <LogoutButton />
           </li>
         </>
       )

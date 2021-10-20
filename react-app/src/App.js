@@ -5,42 +5,54 @@ import NavBar from './components/NavBar';
 // import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import AlbumForm from './components/AlbumForm';
+import SongForm from './components/SongForm';
+import HomePage from './components/HomePage'
 import { authenticate } from './store/session';
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
-  const dispatch = useDispatch();
+	const [loaded, setLoaded] = useState(false);
+	const dispatch = useDispatch();
 
-  useEffect(() => {
-    (async() => {
-      await dispatch(authenticate());
-      setLoaded(true);
-    })();
-  }, [dispatch]);
+	useEffect(() => {
+		(async () => {
+			await dispatch(authenticate());
+			setLoaded(true);
+		})();
+	}, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+	if (!loaded) {
+		return null;
+	}
 
-  return (
-    <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/' exact={true}>
-          <h1>Welcome to Nimbus Noise</h1>
-        </Route>
-        <Route path='/users' exact={true} >
-          <UsersList/>
-        </Route>
-        <Route path='/users/:userId' exact={true} >
-          <User />
-        </Route>
-        {/* <ProtectedRoute path='/' exact={true} >
+	return (
+		<BrowserRouter>
+			<Switch>
+				<Route path='/' exact={true}>
+					<HomePage />
+				</Route>
+				<Route path='/users' exact={true} >
+					<NavBar />
+					<UsersList />
+				</Route>
+				<Route path='/users/:userId' exact={true} >
+					<NavBar />
+					<User />
+				</Route>
+				<Route path='/add-album' exact={true}>
+					<NavBar />
+					<AlbumForm />
+				</Route>
+				<Route path='/add-song' exact={true}>
+					<NavBar />
+					<SongForm />
+				</Route>
+				{/* <ProtectedRoute path='/' exact={true} >
           <h1>My Home Page</h1>
         </ProtectedRoute> */}
-      </Switch>
-    </BrowserRouter>
-  );
+			</Switch>
+		</BrowserRouter>
+	);
 }
 
 export default App;

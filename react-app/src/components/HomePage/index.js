@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import LoginFormModal from '../LoginFormModal'
 import SignUpModal from '../SignUpModal/';
 
+import css from './HomePage.module.css'
+
 function HomePage() {
     const history = useHistory();
 
@@ -15,11 +17,15 @@ function HomePage() {
 
     return (
         <div>
-            <div>
-                <LoginFormModal />
-                <SignUpModal />
+            <div className={css.top_container}>
+                <div>
+                    <h2>Nimbus Noise</h2>
+                </div>
+                <div className={css.right_container}>
+                    <LoginFormModal />
+                    <SignUpModal />
+                </div>
             </div>
-            <h2>Welcome to Nimbus Noise</h2>
         </div>
     )
 }

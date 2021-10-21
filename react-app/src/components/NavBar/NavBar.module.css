@@ -1,0 +1,54 @@
+.outer_container{
+    width: 100vw;
+    height: 2.5rem;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #87CEEB;
+    color: white;
+}
+
+.app_name{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.right_container {
+    display: flex;
+    width: 15%;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown_nav {
+    position: absolute;
+    width: 45px;
+    background-color: white;
+    width: 100px;
+    max-width: 100px;
+    z-index: 1;
+}
+
+.dropbtn {
+    color: #87CEEB;
+    height: 28px;
+    width: 100px;
+    background-color: white;
+    font-size: small;
+}
+
+.inner_drop {
+    margin: 10px 0;
+}
+
+.drop_text {
+    font-size: small;
+    color: black;
+}

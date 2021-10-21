@@ -8,7 +8,6 @@ from app.forms import AlbumForm
 album_routes = Blueprint('albums', __name__)
 
 @album_routes.route('')
-@login_required
 def albums():
     '''
     GET route for specific album.

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NavBar from './components/NavBar';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -39,14 +40,14 @@ function App() {
 					<NavBar />
 					<User />
 				</Route>
-				<Route path='/add-album' exact={true}>
+				<ProtectedRoute path='/add-album' exact={true}>
 					<NavBar />
 					<AlbumForm />
-				</Route>
-				<Route path='/add-song' exact={true}>
+				</ProtectedRoute>
+				<ProtectedRoute path='/add-song' exact={true}>
 					<NavBar />
 					<SongForm />
-				</Route>
+				</ProtectedRoute>
 				<Route path='/albums/:albumId' exact={true}>
 					<NavBar />
 					<AlbumPage />

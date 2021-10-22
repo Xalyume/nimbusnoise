@@ -1,16 +1,26 @@
-import React, { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getSongThunk } from "../../store/songs";
+import { getSongThunk, editSongThunk, delSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
 
 function SongPage() {
-    const dispatch = useDispatch()
-    const songs = useSelector((state) => state.songs)
-    const albums = useSelector((state) => state.albums)
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const songs = useSelector((state) => state.songs);
+    const albums = useSelector((state) => state.albums);
+    const sessionUser = useSelector((state) => state.session.user);
     const { songId } = useParams();
-
     const song = songs[songId]
+
+    const [editButtons, setEditButtons] = useState(false);
+    const [edit, setEdit] = useState(false);
+    const [title, setTitle] = useState(""); // TODO: look at getting text prefilled
+    const [, setNewRender] = useState({});
+
+    if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
+        history.push("/users");
+    }
 
     const albumArr = Object.values(albums)
     const songAlbum = albumArr.find(album => album["id"] === song["album_id"])
@@ -25,13 +35,84 @@ function SongPage() {
         dispatch(getAlbum())
     }, [dispatch])
 
+    useEffect(() => {
+        if (sessionUser?.id) {
+            if (sessionUser?.id === song?.user_id) {
+                setEditButtons(true);
+            }
+        }
+    }, [sessionUser?.id, song?.user_id]);
+
+    const onDelete = () => {
+        const toDelete = song.id;
+
+        dispatch(delSongThunk(toDelete));
+        history.push(`/users`);
+
+    };
+
+    const updateSubmit = async (e) => {
+        e.preventDefault();
+
+        const payload = {
+            id: song.id,
+            title,
+        };
+
+        let res = await dispatch(editSongThunk(payload));
+        if (res.ok) {
+            setEdit(false);
+            song.title = title;
+            setNewRender({}) // forcing a rerender after
+        }
+    };
+
+    const onEdit = () => {
+        setEdit(!edit);
+    };
+
+    let editDelBtns;
+    if (editButtons) {
+        editDelBtns = (
+            <div>
+                <button
+                    onClick={onEdit}
+                >Edit</button>
+                <button
+                    onClick={onDelete}
+                >Delete</button>
+            </div>
+        );
+    }
+
+    let editForm;
+    if (edit) {
+        editForm = (
+            <form onSubmit={updateSubmit}>
+                <input
+                    type="text"
+                    value={title}
+                    placeholder={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
+                <button type="submit">Update</button>
+                <button onClick={() => setEdit(false)}>Cancel</button>
+            </form>
+        );
+    } else {
+        editForm = <h2>Song Title: {song?.title}</h2>
+    }
+
     if (!song) return null;
 
     return (
         <>
-            <h2>Song Title: {song.title}</h2>
+            {editForm}
             <h3>Album: <Link to={`/albums/${songAlbum?.id}`}>{songAlbum?.title}</Link></h3>
             <p>Created At: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
+            <div>
+                {editDelBtns}
+            </div>
         </>
     )
 }

@@ -18,7 +18,6 @@ def song():
     return {song.id: song.to_dict() for song in songs}
 
 
-
 @song_routes.route('', methods=['POST'])
 @login_required
 def add_song():
@@ -55,3 +54,38 @@ def add_song():
         return new_song.to_dict()
     else:
         return {'errors': 'missing data'}
+
+
+@song_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
+def edit_title(id):
+    '''
+    Route to edit the song title for a specific song
+    '''
+    upodate_song = Song.query.filter(id == Song.id).first()
+    upodate_song.title = request.data.decode('UTF-8')[1:-1]
+
+    print(upodate_song)
+    print(upodate_song.title)
+
+    db.session.commit()
+
+    return upodate_song.to_dict()
+
+
+@song_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def del_song(id):
+    '''
+    Image delete route.
+    Work on deleting from AWS bucket and database
+    '''
+    song_to_delete = Song.query.filter(Song.id == id).first()
+
+    if not song_to_delete:
+        return 'Nothing to delete'
+    else:
+
+        db.session.delete(song_to_delete)
+        db.session.commit()
+        return {'res': True}

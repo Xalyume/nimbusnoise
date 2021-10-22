@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addAlbum } from '../../store/albums'
+import { addAlbum } from '../../store/albums';
+
+import css from './AlbumForm.module.css'
 
 function AlbumForm() {
     const history = useHistory();
@@ -44,21 +46,27 @@ function AlbumForm() {
     }
 
     return (
-        <div>
-            <form onSubmit={submitAlbum}>
-                <label>Title</label>
-                <input value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <label>Album Image</label>
-                <input value={albumImage}
-                    onChange={(e) => setAlbumImage(e.target.value)}
-                />
-                <button type="submit">
-                    Add Album
-                </button>
-                <Link to='/users'>Cancel</Link>
-            </form>
+        <div className={css.form_container}>
+            <div className={css.form_inner}>
+                <h3>Add An Album:</h3>
+                <form onSubmit={submitAlbum}
+                    className={css.album_form}>
+                    <label>Title</label>
+                    <input value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <label>Album Image</label>
+                    <input value={albumImage}
+                        onChange={(e) => setAlbumImage(e.target.value)}
+                    />
+                    <div className={css.button_container}>
+                        <button type="submit">
+                            Add Album
+                        </button>
+                        <Link to='/users'>Cancel</Link>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

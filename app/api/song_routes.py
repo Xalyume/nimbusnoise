@@ -18,7 +18,6 @@ def song():
     return {song.id: song.to_dict() for song in songs}
 
 
-
 @song_routes.route('', methods=['POST'])
 @login_required
 def add_song():
@@ -55,3 +54,20 @@ def add_song():
         return new_song.to_dict()
     else:
         return {'errors': 'missing data'}
+
+
+@song_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
+def edit_title(id):
+    '''
+    Route to edit the song title for a specific song
+    '''
+    upodate_song = Song.query.filter(id == Song.id).first()
+    upodate_song.title = request.data.decode('UTF-8')[1:-1]
+
+    print(upodate_song)
+    print(upodate_song.title)
+
+    db.session.commit()
+
+    return upodate_song.to_dict()

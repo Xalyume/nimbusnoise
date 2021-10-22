@@ -19,7 +19,7 @@ class Song(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "used_id": self.user_id,
+            "user_id": self.user_id,
             "user": self.user.to_dict(),
             "album_id": self.album_id,
             # "album": self.album.to_dict(),

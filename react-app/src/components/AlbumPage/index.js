@@ -34,11 +34,13 @@ function AlbumPage() {
             </div>
             <div>
                 {Object.values(album["songs"]).map((song) => (
-                    <Link
-                        key={song.id}
-                        to={`/songs/${song.id}`}>
-                        {song.title}
-                    </Link>
+                    <li>
+                        <Link
+                            key={song.id}
+                            to={`/songs/${song.id}`}>
+                            {song.title}
+                        </Link>
+                    </li>
                 ))}
             </div>
         </>

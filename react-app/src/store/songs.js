@@ -1,5 +1,6 @@
 const ADD_SONG = "songs/ADD_SONG";
 const GET_SONG = "songs/GET_SONG";
+const EDIT_SONG = "songs/EDIT_SONG";
 
 const add = (song) => ({
     type: ADD_SONG,
@@ -10,6 +11,11 @@ const get = (song) => ({
     type: GET_SONG,
     payload: song,
 });
+
+const edit = song => ({
+    type: GET_SONG,
+    payload: song,
+})
 
 export const addSongThunk = (formData) => async (dispatch) => {
 
@@ -38,6 +44,23 @@ export const getSongThunk = () => async (dispatch) => {
     }
 }
 
+export const editSongThunk = (data) => async (dispatch) => {
+    const res = await fetch(`/api/songs/${data.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data.title),
+    });
+
+    if (res.ok) {
+        const query = await res.json();
+        
+        dispatch(edit(query));
+        return { ok: true };
+    }
+}
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {
@@ -51,6 +74,9 @@ export default function reducer(state = initialState, action) {
             newState = Object.assign({}, state)
             const allSongs = action.payload;
             Object.values(allSongs).forEach((song) => { newState[song.id] = song; });
+            return newState;
+        case EDIT_SONG:
+            newState[action.payload.id]["title"] = action.payload.title;
             return newState;
         default:
             return state;

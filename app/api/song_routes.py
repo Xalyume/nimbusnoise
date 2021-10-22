@@ -71,3 +71,21 @@ def edit_title(id):
     db.session.commit()
 
     return upodate_song.to_dict()
+
+
+@song_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def del_song(id):
+    '''
+    Image delete route.
+    Work on deleting from AWS bucket and database
+    '''
+    song_to_delete = Song.query.filter(Song.id == id).first()
+
+    if not song_to_delete:
+        return 'Nothing to delete'
+    else:
+
+        db.session.delete(song_to_delete)
+        db.session.commit()
+        return {'res': True}

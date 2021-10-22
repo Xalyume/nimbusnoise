@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getSongThunk, editSongThunk } from "../../store/songs";
+import { getSongThunk, editSongThunk, delSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
 
 function SongPage() {
@@ -17,6 +17,10 @@ function SongPage() {
     const [edit, setEdit] = useState(false);
     const [title, setTitle] = useState(""); // TODO: look at getting text prefilled
     const [, setNewRender] = useState({});
+
+    if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
+        history.push("/users");
+    }
 
     const albumArr = Object.values(albums)
     const songAlbum = albumArr.find(album => album["id"] === song["album_id"])
@@ -39,13 +43,12 @@ function SongPage() {
         }
     }, [sessionUser?.id, song?.user_id]);
 
-    const onDelete = async () => {
+    const onDelete = () => {
         const toDelete = song.id;
 
-        // let res = await dispatch(delSongThunk(toDelete));
-        // if (res.ok) {
-        //     history.push(`/home`);
-        // }
+        dispatch(delSongThunk(toDelete));
+        history.push(`/users`);
+
     };
 
     const updateSubmit = async (e) => {
@@ -60,7 +63,7 @@ function SongPage() {
         if (res.ok) {
             setEdit(false);
             song.title = title;
-            setNewRender({}) // forcing a rerender after 
+            setNewRender({}) // forcing a rerender after
         }
     };
 

@@ -1,6 +1,7 @@
 const ADD_SONG = "songs/ADD_SONG";
 const GET_SONG = "songs/GET_SONG";
 const EDIT_SONG = "songs/EDIT_SONG";
+const DEL_SONG = "songs/DEL_SONG";
 
 const add = (song) => ({
     type: ADD_SONG,
@@ -14,6 +15,11 @@ const get = (song) => ({
 
 const edit = song => ({
     type: GET_SONG,
+    payload: song,
+})
+
+const del = song => ({
+    type: DEL_SONG,
     payload: song,
 })
 
@@ -55,9 +61,20 @@ export const editSongThunk = (data) => async (dispatch) => {
 
     if (res.ok) {
         const query = await res.json();
-        
+
         dispatch(edit(query));
         return { ok: true };
+    }
+}
+
+export const delSongThunk = (id) => async (dispatch) => {
+    const res = await fetch(`/api/songs/${id}`, {
+        method: "DELETE",
+    });
+    if (res.ok) {
+        await res.json();
+        dispatch(del(id));
+        return null
     }
 }
 
@@ -77,6 +94,11 @@ export default function reducer(state = initialState, action) {
             return newState;
         case EDIT_SONG:
             newState[action.payload.id]["title"] = action.payload.title;
+            return newState;
+        case DEL_SONG:
+            console.log(action.payload)
+            newState = Object.assign({}, state)
+            delete newState[action.payload];
             return newState;
         default:
             return state;

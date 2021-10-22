@@ -34,9 +34,8 @@ function AlbumPage() {
             </div>
             <div>
                 {Object.values(album["songs"]).map((song) => (
-                    <li>
+                    <li key={song.id}>
                         <Link
-                            key={song.id}
                             to={`/songs/${song.id}`}>
                             {song.title}
                         </Link>

@@ -7,8 +7,9 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import AlbumForm from './components/AlbumForm';
 import SongForm from './components/SongForm';
-import HomePage from './components/HomePage'
-import AlbumPage from './components/AlbumPage'
+import HomePage from './components/HomePage';
+import AlbumPage from './components/AlbumPage';
+import SongPage from './components/SongPage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -51,6 +52,10 @@ function App() {
 				<Route path='/albums/:albumId' exact={true}>
 					<NavBar />
 					<AlbumPage />
+				</Route>
+				<Route path='/songs/:songId' exact={true}>
+					<NavBar />
+					<SongPage />
 				</Route>
 			</Switch>
 		</BrowserRouter>

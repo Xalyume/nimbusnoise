@@ -29,6 +29,15 @@ export const addSongThunk = (formData) => async (dispatch) => {
     }
 };
 
+export const getSongThunk = () => async (dispatch) => {
+
+    const res = await fetch(`/api/songs`);
+    if (res.ok) {
+        const query = await res.json();
+        dispatch(get(query));
+    }
+}
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {

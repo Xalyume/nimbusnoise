@@ -8,14 +8,15 @@ from app.forms import SongForm
 
 song_routes = Blueprint('songs', __name__)
 
-@song_routes.route('/<int:id>')
+@song_routes.route('')
 @login_required
-def song(id):
+def song():
     '''
     GET route to get a single song
     '''
-    song = Song.query.get(id)
-    return song.to_dict()
+    songs = Song.query.all()
+    return {song.id: song.to_dict() for song in songs}
+
 
 
 @song_routes.route('', methods=['POST'])

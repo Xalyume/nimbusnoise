@@ -22,7 +22,7 @@ class Song(db.Model):
             "used_id": self.user_id,
             "user": self.user.to_dict(),
             "album_id": self.album_id,
-            "album": self.album.to_dict(),
+            # "album": self.album.to_dict(),
             "title": self.title,
             "song_file": self.song_file,
             'comments': {comment.to_dict()["id"]: comment.to_dict() for comment in self.comments},

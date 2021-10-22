@@ -19,6 +19,7 @@ class Album(db.Model):
             "user_id": self.user_id,
             "user": self.user.to_dict(),
             "title": self.title,
+            "songs": {song.to_dict()["id"]: song.to_dict() for song in self.songs},
             "image_url": self.image_url,
             "created_at": self.created_at,
             "updated_at": self.updated_at

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAlbum } from "../../store/albums"
-import { addSongThunk } from '../../store/songs'
+import { getAlbum } from "../../store/albums";
+import { addSongThunk } from '../../store/songs';
 
 function SongForm() {
     const history = useHistory();

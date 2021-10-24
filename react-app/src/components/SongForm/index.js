@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAlbum } from "../../store/albums";
 import { addSongThunk } from '../../store/songs';
 
+import css from './SongForm.module.css'
+
 function SongForm() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -55,40 +57,45 @@ function SongForm() {
     }
 
     return (
-        <div>
-            <form onSubmit={addSong}>
+        <div className={css.form_container}>
+            <div className={css.form_inner}>
                 <h3>Upload a Song</h3>
-                {error && <h3>{error}</h3>}
-                <label>Add Song</label>
-                <input
-                    id="song_upload"
-                    type="file"
-                    accept="mp3/*"
-                    onChange={updateSong}
-                />
-                <label>Title</label>
-                <input type='text'
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)} />
-                <label>Album</label>
-                <select name="slices"
-                    onChange={(e) => setAlbum(e.target.value)}
-                >
-                    <option value={null}
-                        disabled="disabled"
-                        selected
-                    >Pick an album.</option>
-                    {userAlbum.map((album) => (
-                        <option
-                            value={album.id}
-                            key={album.id}>
-                            {album.title}
-                        </option>
-                    ))}
-                </select>
-                <button>Upload</button>
-                <Link to='/users'>Cancel</Link>
-            </form>
+                <form onSubmit={addSong}
+                    className={css.album_form}>
+                    {error && <h3>{error}</h3>}
+                    <label>Add Song</label>
+                    <input
+                        id="song_upload"
+                        type="file"
+                        accept="mp3/*"
+                        onChange={updateSong}
+                    />
+                    <label>Title</label>
+                    <input type='text'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)} />
+                    <label>Album</label>
+                    <select name="slices"
+                        onChange={(e) => setAlbum(e.target.value)}
+                    >
+                        <option value={null}
+                            disabled="disabled"
+                            selected
+                        >Pick an album.</option>
+                        {userAlbum.map((album) => (
+                            <option
+                                value={album.id}
+                                key={album.id}>
+                                {album.title}
+                            </option>
+                        ))}
+                    </select>
+                    <div>
+                        <button>Upload</button>
+                        <Link to='/users'>Cancel</Link>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSongThunk, editSongThunk, delSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
 
+import css from './SongPage.module.css'
+
 function SongPage() {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -77,9 +79,11 @@ function SongPage() {
             <div>
                 <button
                     onClick={onEdit}
+                    className={css.edit_btn}
                 >Edit</button>
                 <button
                     onClick={onDelete}
+                    className={css.edit_btn}
                 >Delete</button>
             </div>
         );
@@ -100,18 +104,35 @@ function SongPage() {
             </form>
         );
     } else {
-        editForm = <h2>Song Title: {song?.title}</h2>
+        editForm = <h2 className={css.song_title}>Song Title: {song?.title}</h2>
     }
 
     if (!song) return null;
 
     return (
         <>
-            {editForm}
-            <h3>Album: <Link to={`/albums/${songAlbum?.id}`}>{songAlbum?.title}</Link></h3>
-            <p>Created At: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
-            <div>
-                {editDelBtns}
+            <div className={css.song_info_card}>
+                <div>
+                    <h3 className={css.album_title}>Album: <Link to={`/albums/${songAlbum?.id}`}>{songAlbum?.title}</Link></h3>
+                    <div>
+                        {editForm}
+                    </div>
+                    <p className={css.date_tag}>Added On: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
+                </div>
+                <div className={css.edit_btn_container}>
+                    {editDelBtns}
+                </div>
+            </div>
+            <div className={css.add_comment}>
+                <div>
+                    <input
+                        placeholder='this is the placeholder of the comment input'
+                        className={css.add_input} />
+                    <button>Add a Comment</button>
+                </div>
+            </div>
+            <div className={css.comments_container}>
+                <p>placeholder for comments container</p>
             </div>
         </>
     )

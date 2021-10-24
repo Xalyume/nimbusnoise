@@ -1,0 +1,20 @@
+.album_info_card {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 2%;
+    width: 75%;
+    padding: 3%;
+    background-color: #87ceeb;
+    color: white;
+}
+
+.album_tag {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.date_tag {
+    font-size: small;
+    margin-top: 2%;
+}

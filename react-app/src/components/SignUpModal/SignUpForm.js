@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 import css from './Signup.module.css'
 
 const SignUpForm = ({ onClose }) => {
-	const history = useHistory()
+	// const history = useHistory()
 
 	const [errors, setErrors] = useState([]);
 	const [username, setUsername] = useState('');

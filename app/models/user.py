@@ -32,5 +32,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'songs': {song.to_dict()["id"]: song.to_dict() for song in self.songs},
+            'albums': {album.to_dict()["id"]: album.to_dict() for album in self.albums},
             'created_at': self.created_at,
         }

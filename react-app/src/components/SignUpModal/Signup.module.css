@@ -1,7 +1,26 @@
+.login_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 400px;
+    width: 350px;
+    padding: 5%;
+}
+
+.title_tag {
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.errors {
+    color: red;
+    font-size: small;
+}
+
 .auth_button {
     border: 1px solid white;
     padding: 2% 8%;
-    margin: 35px;
     color: white;
     margin: 0 3%;
 }

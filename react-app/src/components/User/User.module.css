@@ -1,0 +1,51 @@
+.user_card_container {
+    margin: auto;
+    margin-top: 2%;
+    width: 75%;
+    padding: 3%;
+    background-color: #87ceeb;
+    color: white;
+}
+
+.username_tag {
+    font-size: x-large;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.membership_date {
+    font-size: small;
+}
+
+.user_media_container {
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    margin-top: 2%;
+    width: 75%;
+    padding: 3%;
+}
+
+.albums_container {
+    width: 50%;
+}
+
+.albums_display_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.song_album {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.album_picture {
+    height: 100px;
+    width: 100px;
+    background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+    margin: 1.5rem 1.5rem;
+}

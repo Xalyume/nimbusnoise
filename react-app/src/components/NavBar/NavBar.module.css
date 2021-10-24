@@ -16,7 +16,7 @@
 
 .right_container {
     display: flex;
-    width: 15%;
+    width: 25%;
     justify-content: space-around;
     align-items: center;
     color: white;
@@ -52,3 +52,4 @@
     font-size: small;
     color: black;
 }
+

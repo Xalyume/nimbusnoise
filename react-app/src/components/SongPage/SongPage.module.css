@@ -1,0 +1,55 @@
+.song_info_card {
+  margin: auto;
+  margin-top: 2%;
+  width: 75%;
+  padding: 3%;
+  background-color: #87ceeb;
+  color: white;
+}
+
+.song_title {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.album_title {
+  font-size: large;
+  margin-top: 1%;
+}
+
+.date_tag {
+  font-size: small;
+  margin-top: 2%;
+}
+
+.edit_btn_container {
+  margin-top: 1%;
+}
+
+.edit_btn {
+  background-color: white;
+  margin: 0 1%;
+  color: #87ceeb;
+  padding: 1px 15px;
+}
+
+.add_comment {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2%;
+    width: 75%;
+}
+
+.add_input {
+    min-width: 200px;
+    width: 400px;
+}
+
+.comments_container {
+    margin: auto;
+    margin-top: 2%;
+    width: 75%;
+    padding: 3%;
+    border: 1px solid black;
+}

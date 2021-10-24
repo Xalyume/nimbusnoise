@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom'
 // import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
+import css from './Login.module.css'
+
 const LoginForm = ({ onClose }) => {
     const history = useHistory()
 
@@ -36,12 +38,21 @@ const LoginForm = ({ onClose }) => {
     //   return <Redirect to='/' />;
     // }
 
+    const demo = async (e) => {
+        e.preventDefault();
+
+        await dispatch(login("demo@aa.io", "password"));
+        history.push("/users");
+    };
+
     return (
         <>
-            <form onSubmit={onLogin}>
+            <form onSubmit={onLogin}
+                className={css.login_form}>
+                <div className={css.title_tag}>Log into Nimbus Noise</div>
                 <div>
                     {errors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
+                        <div key={ind} className={css.errors}>{error}</div>
                     ))}
                 </div>
                 <div>
@@ -63,8 +74,9 @@ const LoginForm = ({ onClose }) => {
                         value={password}
                         onChange={updatePassword}
                     />
-                    <button type='submit'>Login</button>
                 </div>
+                <button type='submit'>Login</button>
+                <button onClick={demo}>Demo User</button>
             </form>
         </>
     );

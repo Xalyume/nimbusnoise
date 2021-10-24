@@ -17,7 +17,7 @@ class Album(db.Model):
         return {
             "id": self.id,
             "user_id": self.user_id,
-            "user": self.user.to_dict(),
+            # "user": self.user.to_dict(),
             "title": self.title,
             "songs": {song.to_dict()["id"]: song.to_dict() for song in self.songs},
             "image_url": self.image_url,

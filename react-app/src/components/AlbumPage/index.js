@@ -34,16 +34,21 @@ function AlbumPage() {
                     <h2 className={css.album_tag}>{album.title}</h2>
                     <p className={css.date_tag}>Created At: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
                 </div>
-                <div>
-                    <img src={album.image_url} alt="album_cover" />
-                </div>
+                <div
+                    alt="album_picture"
+                    style={{
+                        backgroundImage: `url(${album.image_url})`,
+                    }}
+                    className={css.album_picture}
+                ></div>
             </div>
             <div className={css.songs_container}>
                 <p>Songs in this Album:</p>
                 {Object.values(album["songs"]).map((song) => (
                     <li key={song.id}>
                         <Link
-                            to={`/songs/${song.id}`}>
+                            to={`/songs/${song.id}`}
+                            className={css.song_title}>
                             {song.title}
                         </Link>
                     </li>

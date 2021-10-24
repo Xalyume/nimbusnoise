@@ -10,11 +10,35 @@
 }
 
 .album_tag {
-    font-size: larger;
+    font-size: x-large;
     font-weight: bold;
 }
 
 .date_tag {
     font-size: small;
     margin-top: 2%;
+}
+
+.songs_container {
+    margin: auto;
+    margin-top: 2%;
+    width: 75%;
+    padding: 3%;
+    border: 1px solid black;
+}
+
+.songs_container > li {
+    margin: 1% 0;
+}
+
+.song_title {
+    font-size: small;
+}
+
+.album_picture {
+    height: 125px;
+    width: 125px;
+    background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
 }

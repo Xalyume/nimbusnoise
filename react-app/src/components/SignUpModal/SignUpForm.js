@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
+import css from './Signup.module.css'
+
 const SignUpForm = ({ onClose }) => {
 	const history = useHistory()
 
@@ -50,7 +52,8 @@ const SignUpForm = ({ onClose }) => {
 	// }
 
 	return (
-		<form onSubmit={onSignUp}>
+		<form onSubmit={onSignUp} className={css.login_form}>
+			<div className={css.title_tag}>Sign up for Nimbus Noise</div>
 			<div>
 				{errors.map((error, ind) => (
 					<div key={ind}>{error}</div>
@@ -63,6 +66,7 @@ const SignUpForm = ({ onClose }) => {
 					name='username'
 					onChange={updateUsername}
 					value={username}
+					placeholder="Username"
 				></input>
 			</div>
 			<div>
@@ -72,6 +76,7 @@ const SignUpForm = ({ onClose }) => {
 					name='email'
 					onChange={updateEmail}
 					value={email}
+					placeholder='Email'
 				></input>
 			</div>
 			<div>
@@ -81,19 +86,21 @@ const SignUpForm = ({ onClose }) => {
 					name='password'
 					onChange={updatePassword}
 					value={password}
+					placeholder="Password"
 				></input>
 			</div>
 			<div>
-				<label>Repeat Password</label>
+				<label>Confirm Password</label>
 				<input
 					type='password'
 					name='repeat_password'
 					onChange={updateRepeatPassword}
 					value={repeatPassword}
 					required={true}
+					placeholder="Confirm Password"
 				></input>
-				<button type='submit'>Sign Up</button>
 			</div>
+			<button type='submit'>Sign Up</button>
 		</form>
 	);
 };

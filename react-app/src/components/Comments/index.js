@@ -41,7 +41,7 @@ function Comments({ songId }) {
                             {currentUser && currentUser.id === comment.user_id && (
                                 <div>
                                     <p>Edit</p>
-                                    <DeleteCommentModal />
+                                    <DeleteCommentModal comment={comment}/>
                                 </div>
                             )}
                         </div>

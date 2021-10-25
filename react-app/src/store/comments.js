@@ -51,10 +51,10 @@ export const getCommentThunk = () => async(dispatch) => {
 }
 
 export const deleteCommentThunk = (id) => async (dispatch) => {
-    const res = await fetch(`/api/songs/${id}`, {
+    const res = await fetch(`/api/comments/${id}`, {
         method: "DELETE",
     });
-    
+
     if (res.ok) {
         await res.json();
         dispatch(del(id));

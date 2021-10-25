@@ -42,3 +42,20 @@ def add_comment():
     else:
 
         return form.errors
+
+
+@comment_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_comment(id):
+    '''
+    Comment Delete Route
+    '''
+    comment_delete = Comment.query.filter(Comment.id == id).first()
+
+    if not comment_delete:
+        return 'Nothing to delete'
+    else:
+
+        db.session.delete(comment_delete)
+        db.session.commit()
+        return {'res': True}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getSongThunk, editSongThunk, delSongThunk } from "../../store/songs";
+import { getSongThunk, editSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
 import { addCommentThunk } from '../../store/comments';
 import Comments from "../Comments";
+import DeleteSongModal from '../DeleteSongModal';
 
 import css from './SongPage.module.css'
 
@@ -47,14 +48,6 @@ function SongPage() {
             }
         }
     }, [sessionUser?.id, song?.user_id]);
-
-    const onDelete = () => {
-        const toDelete = song.id;
-
-        dispatch(delSongThunk(toDelete));
-        history.push(`/users`);
-
-    };
 
     const updateSubmit = async (e) => {
         e.preventDefault();
@@ -99,10 +92,7 @@ function SongPage() {
                     onClick={onEdit}
                     className={css.edit_btn}
                 >Edit</button>
-                <button
-                    onClick={onDelete}
-                    className={css.edit_btn}
-                >Delete</button>
+                <DeleteSongModal song={song}/>
             </div>
         );
     }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import DeleteComment from './DeleteComment';
+import DeleteSong from './DeleteSong';
 
-function DeleteCommentModal({ comment }) {
+function DeleteSongModal({ song }) {
     const [showModal, setShowModal] = useState(false);
 
     const onClose = () => {
@@ -21,11 +21,11 @@ function DeleteCommentModal({ comment }) {
             >Delete</button>
             {showModal && (
                 <Modal onClose={onClose}>
-                    <DeleteComment onClose={onClose} comment={comment} />
+                    <DeleteSong onClose={onClose} song={song} />
                 </Modal>
             )}
         </>
     );
 }
 
-export default DeleteCommentModal;
+export default DeleteSongModal;

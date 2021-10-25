@@ -1,15 +1,17 @@
 import React from 'react';
+import { useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deleteCommentThunk } from '../../store/comments';
+import { delSongThunk } from '../../store/songs';
 
-const DeleteComment = ({ onClose, comment }) => {
+const DeleteComment = ({ onClose, song }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const deleteFunc = async () => {
-        const toDelete = comment.id
+        const toDelete = song.id;
 
-        dispatch(deleteCommentThunk(toDelete))
-        onClose()
+        dispatch(delSongThunk(toDelete));
+        history.push(`/users`);
     }
 
     return (

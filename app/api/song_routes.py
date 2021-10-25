@@ -76,7 +76,7 @@ def edit_title(id):
 @login_required
 def del_song(id):
     '''
-    Image delete route.
+    Song delete route.
     Work on deleting from AWS bucket and database
     '''
     song_to_delete = Song.query.filter(Song.id == id).first()

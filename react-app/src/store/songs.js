@@ -96,7 +96,6 @@ export default function reducer(state = initialState, action) {
             newState[action.payload.id]["title"] = action.payload.title;
             return newState;
         case DEL_SONG:
-            console.log(action.payload)
             newState = Object.assign({}, state)
             delete newState[action.payload];
             return newState;

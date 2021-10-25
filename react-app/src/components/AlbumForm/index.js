@@ -27,7 +27,7 @@ function AlbumForm() {
                 album = {
                     user_id: sessionUser.id,
                     title: title,
-                    image_url: "https://lh3.googleusercontent.com/proxy/AvnlljwuafIwyzr2uOvRxXxRNE71VEx_V3tcXknUPeQtJEc7fx3i3VlO4UJEhiQyJhZSz6BjRV5mI0kgEvvAnpT1pVuIYcnl510NQZBQbkVJb6rHHBP1LaQ38wHZtaJA_bkNyadxtZlJuTYLtAvQ1FQS",
+                    image_url: "http://res.cloudinary.com/reverb-lp/image/upload/c_limit,f_auto,h_1200,w_1200/v1/v2/images/066f02d0-f80b-4005-bcf1-eb4883c78e29",
                 };
             } else {
                 album = {

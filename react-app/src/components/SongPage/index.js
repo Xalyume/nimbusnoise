@@ -3,6 +3,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getSongThunk, editSongThunk, delSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
+import { addCommentThunk } from '../../store/comments';
 
 import css from './SongPage.module.css'
 
@@ -18,6 +19,7 @@ function SongPage() {
     const [editButtons, setEditButtons] = useState(false);
     const [edit, setEdit] = useState(false);
     const [title, setTitle] = useState(""); // TODO: look at getting text prefilled
+    const [newComment, setNewComment] = useState("");
     const [, setNewRender] = useState({});
 
     if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
@@ -68,6 +70,21 @@ function SongPage() {
             setNewRender({}) // forcing a rerender after
         }
     };
+
+    const addComment = async(e) => {
+
+        const comment = {
+            user_id: sessionUser.id,
+            song_id: song.id,
+            content: newComment
+        }
+
+        let res = await dispatch(addCommentThunk(comment));
+
+        if (res) {
+            setNewComment("");
+        }
+    }
 
     const onEdit = () => {
         setEdit(!edit);
@@ -126,9 +143,13 @@ function SongPage() {
             <div className={css.add_comment}>
                 <div>
                     <input
-                        placeholder='this is the placeholder of the comment input'
+                        placeholder='Add a comment'
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
                         className={css.add_input} />
-                    <button>Add a Comment</button>
+                    <button
+                        onClick={addComment}
+                    >Add a Comment</button>
                 </div>
             </div>
             <div className={css.comments_container}>

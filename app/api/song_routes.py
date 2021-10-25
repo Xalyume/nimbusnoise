@@ -9,10 +9,9 @@ from app.forms import SongForm
 song_routes = Blueprint('songs', __name__)
 
 @song_routes.route('')
-@login_required
 def song():
     '''
-    GET route to get a single song
+    GET route to get all songs
     '''
     songs = Song.query.all()
     return {song.id: song.to_dict() for song in songs}

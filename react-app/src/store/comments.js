@@ -35,12 +35,32 @@ export const addCommentThunk = (comment) => async (dispatch) => {
 
     if (res.ok) {
         const newComment = await res.json();
-
         dispatch(add(newComment));
 
         return { ok: true };
     }
 };
+
+export const getCommentThunk = () => async(dispatch) => {
+    const res = await fetch("/api/comments")
+
+    if (res.ok) {
+        const comments = await res.json();
+        dispatch(get(comments));
+    }
+}
+
+export const deleteCommentThunk = (id) => async (dispatch) => {
+    const res = await fetch(`/api/songs/${id}`, {
+        method: "DELETE",
+    });
+    
+    if (res.ok) {
+        await res.json();
+        dispatch(del(id));
+        return null
+    }
+}
 
 const initialState = {};
 
@@ -54,10 +74,10 @@ export default function reducer(state = initialState, action) {
         case GET_COMMENTS:
             newState = Object.assign({}, state)
             const allComments = action.payload;
-            Object.values(allComments).forEach((comment) => { newState[comment.id] = comment; });
+            Object.values(allComments).forEach((comment) => { newState[comment.id] = comment });
             return newState;
         case EDIT_COMMENT:
-            newState[action.payload.id]["title"] = action.payload.title;
+            newState[action.payload.id]["content"] = action.payload.content;
             return newState;
         case DEL_COMMENT:
             newState = Object.assign({}, state)

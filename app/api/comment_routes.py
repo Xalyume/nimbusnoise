@@ -7,6 +7,15 @@ from app.forms import CommentForm
 
 comment_routes = Blueprint('comments', __name__)
 
+@comment_routes.route('')
+def comments():
+    '''
+    GET route to get all comments
+    '''
+    comments = Comment.query.all()
+    return {comment.id: comment.to_dict() for comment in comments}
+
+
 @comment_routes.route('', methods=['POST'])
 @login_required
 def add_comment():

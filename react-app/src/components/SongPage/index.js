@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSongThunk, editSongThunk, delSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
 import { addCommentThunk } from '../../store/comments';
+import Comments from "../Comments";
 
 import css from './SongPage.module.css'
 
@@ -153,7 +154,7 @@ function SongPage() {
                 </div>
             </div>
             <div className={css.comments_container}>
-                <p>placeholder for comments container</p>
+                <Comments songId={songId}/>
             </div>
         </>
     )

@@ -37,7 +37,7 @@ export const addSongThunk = (formData) => async (dispatch) => {
         return { ok: true, id: newSong.id }
     } else {
         const response = await res.json();
-        return response
+        return { ok: false, errors: response.errors };
     }
 };
 
@@ -61,7 +61,6 @@ export const editSongThunk = (data) => async (dispatch) => {
 
     if (res.ok) {
         const query = await res.json();
-
         dispatch(edit(query));
         return { ok: true };
     }

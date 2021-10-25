@@ -41,6 +41,8 @@ function SongForm() {
         formData.append("album_id", songAlbum);
 
         let res = await dispatch(addSongThunk(formData));
+        console.log(res);
+        
         if (res.ok) {
             return history.push(`/songs/${res.id}`);
         } else {

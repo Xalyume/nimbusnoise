@@ -12,7 +12,9 @@ function AlbumForm() {
     const sessionUser = useSelector((state) => state.session.user);
 
     const [title, setTitle] = useState("");
-    const [albumImage, setAlbumImage] = useState("")
+    const [albumImage, setAlbumImage] = useState("");
+    const [error, setError] = useState("");
+
 
     if (!sessionUser) {
         history.push("/");
@@ -39,9 +41,15 @@ function AlbumForm() {
 
             let res = await dispatch(addAlbum(album));
 
-            if (res) {
+            if (res.ok) {
                 history.push(`/albums/${res.id}`)
+            } else {
+                const { errors } = res;
+                setError(errors);
+                return;
             }
+        } else {
+            setError("Please provide an album title");
         }
     }
 
@@ -51,6 +59,7 @@ function AlbumForm() {
                 <h3>Add An Album:</h3>
                 <form onSubmit={submitAlbum}
                     className={css.album_form}>
+                    {error && <h3>{error}</h3>}
                     <label>Title</label>
                     <input value={title}
                         onChange={(e) => setTitle(e.target.value)}

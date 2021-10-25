@@ -41,7 +41,7 @@ function Comments({ songId }) {
                             {currentUser && currentUser.id === comment.user_id && (
                                 <div>
                                     <p>Edit</p>
-                                    <DeleteCommentModal comment={comment}/>
+                                    <DeleteCommentModal comment={comment} />
                                 </div>
                             )}
                         </div>
@@ -51,15 +51,11 @@ function Comments({ songId }) {
             );
         });
 
-        if (!commentList) {
-            return (
-                <p>This song currently has no comments</p>
-            );
-        } else {
-            return (<>
+        return (
+            <>
                 {commentsSection}
-            </>);
-        }
+            </>
+        );
     }
 
 }

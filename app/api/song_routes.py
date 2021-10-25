@@ -25,6 +25,9 @@ def add_song():
     '''
 
     form = SongForm()
+    print("-----form data-----", form.data);
+    print("-----request files-----", request);
+
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         if 'song_file' not in request.files:

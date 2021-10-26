@@ -62,6 +62,22 @@ export const deleteCommentThunk = (id) => async (dispatch) => {
     }
 }
 
+export const editCommentThunk = (data) => async (dispatch) => {
+    const res = await fetch(`/api/comments/${data.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data.content),
+    });
+
+    if (res.ok) {
+        const query = await res.json();
+        dispatch(edit(query));
+        return { ok: true };
+    }
+}
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {

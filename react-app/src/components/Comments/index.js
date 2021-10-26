@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCommentThunk } from "../../store/comments";
 import DeleteCommentModal from "../DeleteCommentModal";
+import EditCommentModal from '../EditCommentModal';
 
 function Comments({ songId }) {
     const dispatch = useDispatch();
@@ -14,8 +15,8 @@ function Comments({ songId }) {
         dispatch(getCommentThunk());
     }, [dispatch]);
 
-    let songComments;
 
+    let songComments;
     if (commentList) {
         let songArr = Object.values(commentList);
 
@@ -40,7 +41,7 @@ function Comments({ songId }) {
                         <div>
                             {currentUser && currentUser.id === comment.user_id && (
                                 <div>
-                                    <p>Edit</p>
+                                    <EditCommentModal comment={comment} />
                                     <DeleteCommentModal comment={comment} />
                                 </div>
                             )}

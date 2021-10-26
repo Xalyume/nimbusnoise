@@ -25,8 +25,6 @@ def add_song():
     '''
 
     form = SongForm()
-    print("-----form data-----", form.data);
-    print("-----request files-----", request);
 
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -64,15 +62,12 @@ def edit_title(id):
     '''
     Route to edit the song title for a specific song
     '''
-    upodate_song = Song.query.filter(id == Song.id).first()
-    upodate_song.title = request.data.decode('UTF-8')[1:-1]
-
-    print(upodate_song)
-    print(upodate_song.title)
+    update_song = Song.query.filter(id == Song.id).first()
+    update_song.title = request.data.decode('UTF-8')[1:-1]
 
     db.session.commit()
 
-    return upodate_song.to_dict()
+    return update_song.to_dict()
 
 
 @song_routes.route('/<int:id>', methods=['DELETE'])

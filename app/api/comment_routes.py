@@ -59,3 +59,17 @@ def delete_comment(id):
         db.session.delete(comment_delete)
         db.session.commit()
         return {'res': True}
+
+
+@comment_routes.route('/<int:id>', methods=['PATCH'])
+@login_required
+def edit_comment(id):
+    '''
+    Route to edit the song title for a specific song
+    '''
+    update_comment = Comment.query.filter(id == Comment.id).first()
+    update_comment.content = request.data.decode('UTF-8')[1:-1]
+
+    db.session.commit()
+
+    return update_comment.to_dict()

@@ -5,6 +5,8 @@ import { getCommentThunk } from "../../store/comments";
 import DeleteCommentModal from "../DeleteCommentModal";
 import EditCommentModal from '../EditCommentModal';
 
+import css from './Comments.module.css'
+
 function Comments({ songId }) {
     const dispatch = useDispatch();
 
@@ -26,28 +28,29 @@ function Comments({ songId }) {
             const newDate = comment?.created_at.split(" ");
 
             return (
-                <div key={comment.id}>
-                    <div>
+                <div key={comment.id} className={css.comment_container}>
+                    <div className={css.inner_container}>
                         <div>
-                            <div>
-                                <Link
-                                    to={`/users/${comment.user_id}`}
-                                >
-                                    {comment.user.username}
-                                </Link>
-                                <div>{comment.content}</div>
-                            </div>
+                            <Link
+                                to={`/users/${comment.user_id}`}
+                                className={css.username}
+                            >
+                                {comment.user.username}
+                            </Link>
+                            <span className={css.comment_content}> {comment.content}</span>
                         </div>
                         <div>
                             {currentUser && currentUser.id === comment.user_id && (
-                                <div>
+                                <div className={css.edit_delete}>
                                     <EditCommentModal comment={comment} />
                                     <DeleteCommentModal comment={comment} />
                                 </div>
                             )}
                         </div>
                     </div>
-                    {newDate[2]} {newDate[1]}, {newDate[3]}
+                    <div className={css.date}>
+                        On {newDate[2]} {newDate[1]}, {newDate[3]}
+                    </div>
                 </div>
             );
         });

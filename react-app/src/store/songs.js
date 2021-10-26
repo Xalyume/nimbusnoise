@@ -37,7 +37,7 @@ export const addSongThunk = (formData) => async (dispatch) => {
         return { ok: true, id: newSong.id }
     } else {
         const response = await res.json();
-        return response
+        return { ok: false, errors: response.errors };
     }
 };
 
@@ -61,7 +61,6 @@ export const editSongThunk = (data) => async (dispatch) => {
 
     if (res.ok) {
         const query = await res.json();
-
         dispatch(edit(query));
         return { ok: true };
     }
@@ -96,7 +95,6 @@ export default function reducer(state = initialState, action) {
             newState[action.payload.id]["title"] = action.payload.title;
             return newState;
         case DEL_SONG:
-            console.log(action.payload)
             newState = Object.assign({}, state)
             delete newState[action.payload];
             return newState;

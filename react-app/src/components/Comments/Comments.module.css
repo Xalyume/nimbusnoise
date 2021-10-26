@@ -1,0 +1,23 @@
+.comment_container {
+  margin: 1% 0;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.inner_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.edit_delete {
+    display: flex;
+    flex-direction: column;
+}
+
+.date {
+    font-size: x-small;
+}

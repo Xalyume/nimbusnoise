@@ -9,10 +9,9 @@ from app.forms import SongForm
 song_routes = Blueprint('songs', __name__)
 
 @song_routes.route('')
-@login_required
 def song():
     '''
-    GET route to get a single song
+    GET route to get all songs
     '''
     songs = Song.query.all()
     return {song.id: song.to_dict() for song in songs}
@@ -26,6 +25,7 @@ def add_song():
     '''
 
     form = SongForm()
+
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         if 'song_file' not in request.files:
@@ -62,22 +62,19 @@ def edit_title(id):
     '''
     Route to edit the song title for a specific song
     '''
-    upodate_song = Song.query.filter(id == Song.id).first()
-    upodate_song.title = request.data.decode('UTF-8')[1:-1]
-
-    print(upodate_song)
-    print(upodate_song.title)
+    update_song = Song.query.filter(id == Song.id).first()
+    update_song.title = request.data.decode('UTF-8')[1:-1]
 
     db.session.commit()
 
-    return upodate_song.to_dict()
+    return update_song.to_dict()
 
 
 @song_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def del_song(id):
     '''
-    Image delete route.
+    Song delete route.
     Work on deleting from AWS bucket and database
     '''
     song_to_delete = Song.query.filter(Song.id == id).first()

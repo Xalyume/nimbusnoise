@@ -25,7 +25,7 @@ class Song(db.Model):
             # "album": self.album.to_dict(),
             "title": self.title,
             "song_file": self.song_file,
-            'comments': {comment.to_dict()["id"]: comment.to_dict() for comment in self.comments},
+            # 'comments': {comment.to_dict()["id"]: comment.to_dict() for comment in self.comments},
             "created_at": self.created_at,
             "updated_at": self.updated_at
         }

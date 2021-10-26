@@ -44,6 +44,7 @@
 .add_input {
     min-width: 200px;
     width: 400px;
+    border: 1px solid black;
 }
 
 .comments_container {

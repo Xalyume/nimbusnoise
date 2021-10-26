@@ -12,7 +12,9 @@ function AlbumForm() {
     const sessionUser = useSelector((state) => state.session.user);
 
     const [title, setTitle] = useState("");
-    const [albumImage, setAlbumImage] = useState("")
+    const [albumImage, setAlbumImage] = useState("");
+    const [error, setError] = useState("");
+
 
     if (!sessionUser) {
         history.push("/");
@@ -27,7 +29,7 @@ function AlbumForm() {
                 album = {
                     user_id: sessionUser.id,
                     title: title,
-                    image_url: "https://lh3.googleusercontent.com/proxy/AvnlljwuafIwyzr2uOvRxXxRNE71VEx_V3tcXknUPeQtJEc7fx3i3VlO4UJEhiQyJhZSz6BjRV5mI0kgEvvAnpT1pVuIYcnl510NQZBQbkVJb6rHHBP1LaQ38wHZtaJA_bkNyadxtZlJuTYLtAvQ1FQS",
+                    image_url: "http://res.cloudinary.com/reverb-lp/image/upload/c_limit,f_auto,h_1200,w_1200/v1/v2/images/066f02d0-f80b-4005-bcf1-eb4883c78e29",
                 };
             } else {
                 album = {
@@ -39,9 +41,15 @@ function AlbumForm() {
 
             let res = await dispatch(addAlbum(album));
 
-            if (res) {
+            if (res.ok) {
                 history.push(`/albums/${res.id}`)
+            } else {
+                const { errors } = res;
+                setError(errors);
+                return;
             }
+        } else {
+            setError("Please provide an album title");
         }
     }
 
@@ -51,6 +59,7 @@ function AlbumForm() {
                 <h3>Add An Album:</h3>
                 <form onSubmit={submitAlbum}
                     className={css.album_form}>
+                    {error && <h3>{error}</h3>}
                     <label>Title</label>
                     <input value={title}
                         onChange={(e) => setTitle(e.target.value)}

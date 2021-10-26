@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getSongThunk, editSongThunk, delSongThunk } from "../../store/songs";
+import { getSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
+import { addCommentThunk } from '../../store/comments';
+import Comments from "../Comments";
+import DeleteSongModal from '../DeleteSongModal';
+import EditSongModal from '../EditSongModal';
 
 import css from './SongPage.module.css'
 
@@ -16,9 +20,8 @@ function SongPage() {
     const song = songs[songId]
 
     const [editButtons, setEditButtons] = useState(false);
-    const [edit, setEdit] = useState(false);
-    const [title, setTitle] = useState(""); // TODO: look at getting text prefilled
-    const [, setNewRender] = useState({});
+    const [newComment, setNewComment] = useState("");
+    // const [, setNewRender] = useState({});
 
     if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
         history.push("/users");
@@ -40,71 +43,34 @@ function SongPage() {
     useEffect(() => {
         if (sessionUser?.id) {
             if (sessionUser?.id === song?.user_id) {
-                setEditButtons(true);
+                setEditButtons(true); 
             }
         }
     }, [sessionUser?.id, song?.user_id]);
 
-    const onDelete = () => {
-        const toDelete = song.id;
+    const addComment = async (e) => {
 
-        dispatch(delSongThunk(toDelete));
-        history.push(`/users`);
-
-    };
-
-    const updateSubmit = async (e) => {
-        e.preventDefault();
-
-        const payload = {
-            id: song.id,
-            title,
-        };
-
-        let res = await dispatch(editSongThunk(payload));
-        if (res.ok) {
-            setEdit(false);
-            song.title = title;
-            setNewRender({}) // forcing a rerender after
+        const comment = {
+            user_id: sessionUser.id,
+            song_id: song.id,
+            content: newComment
         }
-    };
 
-    const onEdit = () => {
-        setEdit(!edit);
-    };
+        let res = await dispatch(addCommentThunk(comment));
+
+        if (res) {
+            setNewComment("");
+        }
+    }
 
     let editDelBtns;
     if (editButtons) {
         editDelBtns = (
             <div>
-                <button
-                    onClick={onEdit}
-                    className={css.edit_btn}
-                >Edit</button>
-                <button
-                    onClick={onDelete}
-                    className={css.edit_btn}
-                >Delete</button>
+                <EditSongModal song={song} />
+                <DeleteSongModal song={song} />
             </div>
         );
-    }
-
-    let editForm;
-    if (edit) {
-        editForm = (
-            <form onSubmit={updateSubmit}>
-                <input
-                    type="text"
-                    value={title}
-                    placeholder={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <button type="submit">Update</button>
-                <button onClick={() => setEdit(false)}>Cancel</button>
-            </form>
-        );
-    } else {
-        editForm = <h2 className={css.song_title}>Song Title: {song?.title}</h2>
     }
 
     if (!song) return null;
@@ -115,7 +81,7 @@ function SongPage() {
                 <div>
                     <h3 className={css.album_title}>Album: <Link to={`/albums/${songAlbum?.id}`}>{songAlbum?.title}</Link></h3>
                     <div>
-                        {editForm}
+                        <h2 className={css.song_title}>Song Title: {song?.title}</h2>
                     </div>
                     <p className={css.date_tag}>Added On: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
                 </div>
@@ -126,13 +92,17 @@ function SongPage() {
             <div className={css.add_comment}>
                 <div>
                     <input
-                        placeholder='this is the placeholder of the comment input'
+                        placeholder='Add a comment'
+                        value={newComment}
+                        onChange={(e) => setNewComment(e.target.value)}
                         className={css.add_input} />
-                    <button>Add a Comment</button>
+                    <button
+                        onClick={addComment}
+                    >Add a Comment</button>
                 </div>
             </div>
             <div className={css.comments_container}>
-                <p>placeholder for comments container</p>
+                <Comments songId={songId} />
             </div>
         </>
     )

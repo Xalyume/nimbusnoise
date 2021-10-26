@@ -3,6 +3,8 @@ import { useHistory} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { delSongThunk } from '../../store/songs';
 
+import css from './DeleteSong.module.css'
+
 const DeleteComment = ({ onClose, song }) => {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,13 +17,13 @@ const DeleteComment = ({ onClose, song }) => {
     }
 
     return (
-        <div>
-            <h2>Are you sure you want to delete this slice?</h2>
-            <div>
+        <div className={css.delete_container}>
+            <p className={css.text_message}>Are you sure you want to delete this song?</p>
+            <div className={css.edit_del_btns}>
                 <button
-                    onClick={deleteFunc}>Confirm</button>
+                    onClick={deleteFunc}>Yes</button>
                 <button
-                    onClick={onClose}>Cancel</button>
+                    onClick={onClose}>No</button>
             </div>
         </div>
     )

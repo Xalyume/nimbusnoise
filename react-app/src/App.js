@@ -10,6 +10,7 @@ import SongForm from './components/SongForm';
 import HomePage from './components/HomePage';
 import AlbumPage from './components/AlbumPage';
 import SongPage from './components/SongPage';
+import FooterMediaPlayer from './components/FooterMediaPlayer';
 import { authenticate } from './store/session';
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
 				<Route path='/users' exact={true} >
 					<NavBar />
 					<UsersList />
+					<FooterMediaPlayer />
 				</Route>
 				<Route path='/users/:userId' exact={true} >
 					<NavBar />

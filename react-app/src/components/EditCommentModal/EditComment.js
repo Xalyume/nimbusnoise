@@ -8,7 +8,7 @@ const EditSlice = ({ onClose, comment }) => {
     const [content, setContent] = useState(comment.content)
 
     const updateSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
         const payload = {
             id: comment.id,

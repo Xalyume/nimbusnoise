@@ -92,6 +92,7 @@ export default function reducer(state = initialState, action) {
             Object.values(allSongs).forEach((song) => { newState[song.id] = song; });
             return newState;
         case EDIT_SONG:
+            newState = Object.assign({}, state)
             newState[action.payload.id]["title"] = action.payload.title;
             return newState;
         case DEL_SONG:

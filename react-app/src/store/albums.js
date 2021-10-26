@@ -25,7 +25,7 @@ export const addAlbum = (album) => async (dispatch) => {
         const newAlbum = await res.json();
         dispatch(add(newAlbum));
 
-        return newAlbum;
+        return { ok: true, id: newAlbum.id };
     }
 }
 

@@ -4,20 +4,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
 import { addCommentThunk } from '../../store/comments';
+import { getUsers } from '../../store/users'
 import Comments from "../Comments";
 import DeleteSongModal from '../DeleteSongModal';
 import EditSongModal from '../EditSongModal';
+
+import { BsFillPlayCircleFill } from 'react-icons/bs'
 
 import css from './SongPage.module.css'
 
 function SongPage() {
     const history = useHistory();
     const dispatch = useDispatch();
+    const { songId } = useParams();
+
     const songs = useSelector((state) => state.songs);
     const albums = useSelector((state) => state.albums);
     const sessionUser = useSelector((state) => state.session.user);
-    const { songId } = useParams();
-    const song = songs[songId]
+    const userList = useSelector((state) => state.users);
+
+    const song = songs[songId];
+    let user;
+    if (song) {
+        const userId = song["user_id"];
+        user = userList[userId];
+    }
 
     const [editButtons, setEditButtons] = useState(false);
     const [newComment, setNewComment] = useState("");
@@ -41,12 +52,20 @@ function SongPage() {
     }, [dispatch])
 
     useEffect(() => {
+        dispatch(getUsers())
+    }, [dispatch])
+
+    useEffect(() => {
         if (sessionUser?.id) {
             if (sessionUser?.id === song?.user_id) {
-                setEditButtons(true); 
+                setEditButtons(true);
             }
         }
     }, [sessionUser?.id, song?.user_id]);
+
+    const buttonClick = () => {
+        console.log("WE HIT THE BUTTON")
+    }
 
     const addComment = async (e) => {
 
@@ -79,14 +98,21 @@ function SongPage() {
         <>
             <div className={css.song_info_card}>
                 <div>
-                    <h3 className={css.album_title}>Album: <Link to={`/albums/${songAlbum?.id}`}>{songAlbum?.title}</Link></h3>
+                    <p><Link to={`/users/${user?.id}`}>{user?.username}</Link></p>
                     <div>
-                        <h2 className={css.song_title}>Song Title: {song?.title}</h2>
+                        <h2 className={css.song_title}>{song?.title}</h2>
                     </div>
+                    <p className={css.album_title}>Album: <Link to={`/albums/${songAlbum?.id}`}>{songAlbum?.title}</Link></p>
                     <p className={css.date_tag}>Added On: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
+                    <div className={css.edit_btn_container}>
+                        {editDelBtns}
+                    </div>
                 </div>
-                <div className={css.edit_btn_container}>
-                    {editDelBtns}
+                <div>
+                    <button onClick={buttonClick}
+                        className={css.play_button}>
+                        <BsFillPlayCircleFill />
+                    </button>
                 </div>
             </div>
             <div className={css.add_comment}>

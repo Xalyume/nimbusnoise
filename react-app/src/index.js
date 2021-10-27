@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import configureStore from './store';
 import { ModalProvider } from './context/Modal';
+import { SongProvider } from './context/SongPlayer';
 
 const store = configureStore();
 
@@ -12,7 +13,9 @@ function Root() {
   return (
     <Provider store={store}>
       <ModalProvider>
-        <App />
+        <SongProvider>
+          <App />
+        </SongProvider>
       </ModalProvider>
     </Provider>
   )

@@ -42,22 +42,27 @@ function App() {
 				<Route path='/users/:userId' exact={true} >
 					<NavBar />
 					<User />
+					<FooterMediaPlayer />
 				</Route>
 				<ProtectedRoute path='/add-album' exact={true}>
 					<NavBar />
 					<AlbumForm />
+					<FooterMediaPlayer />
 				</ProtectedRoute>
 				<ProtectedRoute path='/add-song' exact={true}>
 					<NavBar />
 					<SongForm />
+					<FooterMediaPlayer />
 				</ProtectedRoute>
 				<Route path='/albums/:albumId' exact={true}>
 					<NavBar />
 					<AlbumPage />
+					<FooterMediaPlayer />
 				</Route>
 				<Route path='/songs/:songId' exact={true}>
 					<NavBar />
 					<SongPage />
+					<FooterMediaPlayer />
 				</Route>
 			</Switch>
 		</BrowserRouter>

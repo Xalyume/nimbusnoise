@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useCurrentSong } from '../../context/SongPlayer'
 import { getSongThunk } from "../../store/songs";
 import { getAlbum } from "../../store/albums";
 import { addCommentThunk } from '../../store/comments';
@@ -17,6 +18,7 @@ function SongPage() {
     const history = useHistory();
     const dispatch = useDispatch();
     const { songId } = useParams();
+    const { setCurrentSong } = useCurrentSong();
 
     const songs = useSelector((state) => state.songs);
     const albums = useSelector((state) => state.albums);
@@ -63,8 +65,8 @@ function SongPage() {
         }
     }, [sessionUser?.id, song?.user_id]);
 
-    const buttonClick = () => {
-        console.log("WE HIT THE BUTTON")
+    const playSong = () => {
+        setCurrentSong(song?.song_file);
     }
 
     const addComment = async (e) => {
@@ -109,7 +111,7 @@ function SongPage() {
                     </div>
                 </div>
                 <div>
-                    <button onClick={buttonClick}
+                    <button onClick={playSong}
                         className={css.play_button}>
                         <BsFillPlayCircleFill />
                     </button>

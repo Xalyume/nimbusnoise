@@ -21,8 +21,8 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case GET_USERS:
             newState = Object.assign({}, state)
-            const allUsers = Object.values(action.payload)
-            allUsers[0].forEach((user) => {
+            const allUsers = action.payload["users"]
+            allUsers.forEach((user) => {
                 newState[user.id] = user; });
             return newState;
         default:

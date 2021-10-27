@@ -65,12 +65,13 @@ function SongPage() {
         }
     }, [sessionUser?.id, song?.user_id]);
 
-    const playSong = () => {
-        setCurrentSong(song?.song_file);
+    const playSong = async () => {
+        await setCurrentSong(song?.song_file);
+        const audio = document.getElementById("media_player");
+        audio.play();
     }
 
     const addComment = async (e) => {
-
         const comment = {
             user_id: sessionUser.id,
             song_id: song.id,

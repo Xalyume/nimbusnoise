@@ -12,7 +12,7 @@ function FooterMediaPlayer() {
             <ReactAudioPlayer
                 src={currentSong}
                 controls
-                autoPlay={true}
+                id="media_player"
             />
         </div>
     )

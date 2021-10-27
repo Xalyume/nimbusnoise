@@ -22,5 +22,7 @@
     border: 1px solid white;
     padding: 2% 8%;
     color: white;
-    margin: 0 3%;
+    margin: 0 2%;
+    height: 28px;
+    width: 100px;
 }

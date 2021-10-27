@@ -24,7 +24,7 @@ const SignUpForm = ({ onClose }) => {
 				setErrors(data);
 			}
 		} else {
-			setErrors(["Password must be the same as confirm password."]);
+			setErrors(["Passwords must be the same"]);
 		}
 
 		// onClose();
@@ -56,7 +56,7 @@ const SignUpForm = ({ onClose }) => {
 			<div className={css.title_tag}>Sign up for Nimbus Noise</div>
 			<div>
 				{errors.map((error, ind) => (
-					<div key={ind}>{error}</div>
+					<div key={ind} className={css.errors}>{error}</div>
 				))}
 			</div>
 			<div>

@@ -9,11 +9,16 @@ import css from './AlbumPage.module.css';
 function AlbumPage() {
     const dispatch = useDispatch()
     const albums = useSelector((state) => state.albums)
+    const userList = useSelector((state) => state.users);
+
     const { albumId } = useParams();
 
     const album = albums[albumId]
-
-    // const songArr = Object.values(album["songs"])
+    let user;
+    if (album) {
+        const userId = album["user_id"];
+        user = userList[userId];
+    }
 
     const newDate = album?.created_at.split(" ");
 
@@ -32,6 +37,7 @@ function AlbumPage() {
             <div className={css.album_info_card}>
                 <div>
                     <h2 className={css.album_tag}>{album.title}</h2>
+                    <p><Link to={`/users/${user?.id}`}>{user?.username}</Link></p>
                     <p className={css.date_tag}>Created At: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
                 </div>
                 <div

@@ -93,6 +93,7 @@ export default function reducer(state = initialState, action) {
             Object.values(allComments).forEach((comment) => { newState[comment.id] = comment });
             return newState;
         case EDIT_COMMENT:
+            newState = Object.assign({}, state)
             newState[action.payload.id]["content"] = action.payload.content;
             return newState;
         case DEL_COMMENT:

@@ -10,6 +10,7 @@ import SongForm from './components/SongForm';
 import HomePage from './components/HomePage';
 import AlbumPage from './components/AlbumPage';
 import SongPage from './components/SongPage';
+import ContactPage from './components/ContactPage'
 import FooterMediaPlayer from './components/FooterMediaPlayer';
 import { authenticate } from './store/session';
 
@@ -42,22 +43,32 @@ function App() {
 				<Route path='/users/:userId' exact={true} >
 					<NavBar />
 					<User />
+					<FooterMediaPlayer />
 				</Route>
 				<ProtectedRoute path='/add-album' exact={true}>
 					<NavBar />
 					<AlbumForm />
+					<FooterMediaPlayer />
 				</ProtectedRoute>
 				<ProtectedRoute path='/add-song' exact={true}>
 					<NavBar />
 					<SongForm />
+					<FooterMediaPlayer />
 				</ProtectedRoute>
 				<Route path='/albums/:albumId' exact={true}>
 					<NavBar />
 					<AlbumPage />
+					<FooterMediaPlayer />
 				</Route>
 				<Route path='/songs/:songId' exact={true}>
 					<NavBar />
 					<SongPage />
+					<FooterMediaPlayer />
+				</Route>
+				<Route path='/contact-us' exact={true}>
+					<NavBar />
+					<ContactPage />
+					<FooterMediaPlayer />
 				</Route>
 			</Switch>
 		</BrowserRouter>

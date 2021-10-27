@@ -14,6 +14,16 @@
     font-weight: bold;
 }
 
+.left_container {
+    display: flex;
+    justify-content: space-around;
+    display: flex;
+    width: 15%;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
 .right_container {
     display: flex;
     width: 25%;
@@ -53,3 +63,6 @@
     color: black;
 }
 
+.contact_us {
+    font-size: small;
+}

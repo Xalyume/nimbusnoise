@@ -1,8 +1,10 @@
 .song_info_card {
+  display: flex;
+  align-items: center;
   margin: auto;
   margin-top: 2%;
   width: 75%;
-  padding: 3%;
+  padding: 1.45% 3%;
   background-color: #87ceeb;
   color: white;
 }
@@ -19,7 +21,7 @@
 
 .date_tag {
   font-size: small;
-  margin-top: 2%;
+  margin-top: 10%;
 }
 
 .edit_btn_container {
@@ -34,23 +36,29 @@
 }
 
 .add_comment {
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    margin-top: 2%;
-    width: 75%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 2%;
+  width: 75%;
 }
 
 .add_input {
-    min-width: 200px;
-    width: 400px;
-    border: 1px solid black;
+  min-width: 200px;
+  width: 400px;
+  border: 1px solid black;
 }
 
 .comments_container {
-    margin: auto;
-    margin-top: 2%;
-    width: 75%;
-    padding: 3%;
-    border: 1px solid black;
+  margin: auto;
+  margin-top: 2%;
+  width: 75%;
+  padding: 3%;
+  border: 1px solid black;
+}
+
+.play_button {
+	font-size: 115px;
+	color: white;
+	margin-left: 3%;
 }

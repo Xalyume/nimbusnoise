@@ -10,6 +10,7 @@ import SongForm from './components/SongForm';
 import HomePage from './components/HomePage';
 import AlbumPage from './components/AlbumPage';
 import SongPage from './components/SongPage';
+import ContactPage from './components/ContactPage'
 import FooterMediaPlayer from './components/FooterMediaPlayer';
 import { authenticate } from './store/session';
 
@@ -62,6 +63,11 @@ function App() {
 				<Route path='/songs/:songId' exact={true}>
 					<NavBar />
 					<SongPage />
+					<FooterMediaPlayer />
+				</Route>
+				<Route path='/contact-us' exact={true}>
+					<NavBar />
+					<ContactPage />
 					<FooterMediaPlayer />
 				</Route>
 			</Switch>

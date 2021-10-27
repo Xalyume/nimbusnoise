@@ -128,8 +128,10 @@ const NavBar = () => {
 
 	return (
 		<div className={css.outer_container}>
-			<div>
+			<div className={css.left_container}>
 				{loggedInTwo()}
+				<NavLink to="/contact-us"
+				className={css.contact_us}>Contact Us</NavLink>
 			</div>
 			<div className={css.right_container}>
 				<NavLink to='/users' exact={true} >

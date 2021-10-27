@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, ValidationError
 from app.models import User
 
 
-def user_exists(form, field):
+def email_exists(form, field):
     # Checking if user exists
     email = field.data
     user = User.query.filter(User.email.like(email)).first()
@@ -36,17 +36,17 @@ def check_password(form, field):
             'Password must contain at least one of these following characters: !@#$%^&*(),./?')
     if not any(char for char in password if char.isupper()):
         raise ValidationError(
-            'Pasword must contain at least one uppercase letter.')
+            'Password must contain at least one uppercase letter.')
     if not any(char for char in password if char.islower()):
         raise ValidationError(
-            'Pasword must contain at least one lowercase letter.')
+            'Password must contain at least one lowercase letter.')
     if not any(char for char in password if char.isdecimal()):
         raise ValidationError(
-            'Pasword must contain at least one number.')
+            'Password must contain at least one number.')
 
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+        'username', validators=[DataRequired(message="Please provide a username."), username_exists])
+    email = StringField('email', validators=[DataRequired(message="Please provide an Email"), email_exists])
+    password = StringField('password', validators=[DataRequired("Please provide a password"), check_password])

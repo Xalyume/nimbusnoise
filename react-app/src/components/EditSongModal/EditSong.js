@@ -3,36 +3,48 @@ import { useDispatch } from 'react-redux';
 
 import { editSongThunk } from '../../store/songs';
 
+import css from './EditSong.module.css'
+
 const EditSlice = ({ onClose, song }) => {
     const dispatch = useDispatch();
-    const [title, setTitle] = useState(song.title)
+    const [title, setTitle] = useState(song.title);
+    const [error, setError] = useState("");
 
     const updateSubmit = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
-        const payload = {
-            id: song.id,
-            title,
+        if (!title) {
+            setError("Title cannot be empty.")
+        } else {
+            const payload = {
+                id: song.id,
+                title,
+            }
+            let res = await dispatch(editSongThunk(payload));
+            if (res.ok) {
+                onClose()
+            }
         };
 
-        let res = await dispatch(editSongThunk(payload));
-        if (res.ok) {
-            onClose()
-        }
     };
 
     return (
-        <div>
+        <div className={css.edit_container}>
             <h2>Edit your Song's title.</h2>
             <form onSubmit={updateSubmit}>
+                {error &&
+                    <p className={css.error}>{error}</p>
+                }
                 <input
                     type="text"
                     value={title}
                     placeholder={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
-                <button type="submit">Update</button>
-                <button onClick={() => onClose()}>Cancel</button>
+                <div>
+                    <button type="submit">Update</button>
+                    <button onClick={() => onClose()}>Cancel</button>
+                </div>
             </form>
         </div>
     )

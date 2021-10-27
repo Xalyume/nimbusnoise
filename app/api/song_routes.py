@@ -23,24 +23,24 @@ def add_song():
     '''
     Song post route. Check the song filename and upload to AWS that will return a URL if upload is successful
     '''
+    if 'song_file' not in request.files:
+        print("WE HIT THIS SHIT BRO")
+        return {'errors': 'Please upload a file.'}, 400
+
+    song = request.files['song_file']
+    if not allowed_file(song.filename):
+        return {'errors': 'File type is not supported. Please upload a MP3 filetype'}, 400
+
+    song.filename = get_unique_filename(song.filename)
+    upload = upload_file_to_s3(song)
+
+    if 'url' not in upload:
+        return upload, 400
 
     form = SongForm()
-
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
-        if 'song_file' not in request.files:
-            return {'errors': 'Please upload a file.'}, 400
-
-        song = request.files['song_file']
-        if not allowed_file(song.filename):
-            return {'errors': 'File type is not supported. Please upload a MP3 filetype'}
-
-        song.filename = get_unique_filename(song.filename)
-        upload = upload_file_to_s3(song)
-
-        if 'url' not in upload:
-            return upload, 400
-
         url = upload['url']
         new_song = Song(user_id=request.form["user_id"],
                         song_file=url,
@@ -52,8 +52,6 @@ def add_song():
         db.session.add(new_song)
         db.session.commit()
         return new_song.to_dict()
-    else:
-        return {'errors': 'missing data'}
 
 
 @song_routes.route('/<int:id>', methods=['PATCH'])

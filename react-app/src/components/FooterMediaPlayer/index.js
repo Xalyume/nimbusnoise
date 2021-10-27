@@ -12,7 +12,9 @@ function FooterMediaPlayer() {
             <ReactAudioPlayer
                 src={currentSong}
                 controls
+                volume={.5}
                 id="media_player"
+                style={{ width: '80%',}}
             />
         </div>
     )

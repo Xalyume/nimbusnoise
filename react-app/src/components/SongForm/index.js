@@ -40,9 +40,14 @@ function SongForm() {
         formData.append("title", title);
         formData.append("album_id", songAlbum);
 
+        console.log(sessionUser.id)
+        console.log(song)
+        console.log(title)
+        console.log(songAlbum)
+
         let res = await dispatch(addSongThunk(formData));
         console.log(res);
-        
+
         if (res.ok) {
             return history.push(`/songs/${res.id}`);
         } else {

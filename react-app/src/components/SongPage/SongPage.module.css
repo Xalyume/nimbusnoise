@@ -1,12 +1,19 @@
-.song_info_card {
+.song_outer {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   margin: auto;
-  margin-top: 2%;
+  margin-top: 4%;
   width: 75%;
   padding: 1.45% 3%;
   background-color: #87ceeb;
   color: white;
+  align-items: center;
+}
+
+.song_info_card {
+  display: flex;
+  align-items: center;
+  width: 100%
 }
 
 .song_title {
@@ -14,8 +21,16 @@
   font-weight: bold;
 }
 
+.album_picture {
+  height: 150px;
+  width: 150px;
+  background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+  margin: 1%;
+}
+
 .album_title {
-  font-size: large;
   margin-top: 1%;
 }
 
@@ -52,13 +67,16 @@
 .comments_container {
   margin: auto;
   margin-top: 2%;
-  width: 75%;
-  padding: 3%;
+  width: 70%;
+  padding: 2%;
   border: 1px solid black;
 }
 
+.play_container {
+  margin-right: 3%;
+}
+
 .play_button {
-	font-size: 115px;
+	font-size: 50px;
 	color: white;
-	margin-left: 3%;
 }

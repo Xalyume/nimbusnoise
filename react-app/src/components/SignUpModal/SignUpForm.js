@@ -67,6 +67,7 @@ const SignUpForm = ({ onClose }) => {
 					onChange={updateUsername}
 					value={username}
 					placeholder="Username"
+					className={css.input_bar}
 				></input>
 			</div>
 			<div>
@@ -77,6 +78,7 @@ const SignUpForm = ({ onClose }) => {
 					onChange={updateEmail}
 					value={email}
 					placeholder='Email'
+					className={css.input_bar}
 				></input>
 			</div>
 			<div>
@@ -87,6 +89,7 @@ const SignUpForm = ({ onClose }) => {
 					onChange={updatePassword}
 					value={password}
 					placeholder="Password"
+					className={css.input_bar}
 				></input>
 			</div>
 			<div>
@@ -98,9 +101,10 @@ const SignUpForm = ({ onClose }) => {
 					value={repeatPassword}
 					required={true}
 					placeholder="Confirm Password"
+					className={css.input_bar}
 				></input>
 			</div>
-			<button type='submit'>Sign Up</button>
+			<button type='submit' className={css.btn}>Sign Up</button>
 		</form>
 	);
 };

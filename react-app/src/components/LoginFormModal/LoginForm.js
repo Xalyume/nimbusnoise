@@ -64,6 +64,7 @@ const LoginForm = ({ onClose }) => {
                         placeholder='Email'
                         value={email}
                         onChange={updateEmail}
+                        className={css.input_bar}
                     />
                 </div>
                 <div>
@@ -74,10 +75,15 @@ const LoginForm = ({ onClose }) => {
                         placeholder='Password'
                         value={password}
                         onChange={updatePassword}
+                        className={css.input_bar}
                     />
                 </div>
-                <button type='submit'>Login</button>
-                <button onClick={demo}>Demo User</button>
+                <div className={css.login_btns}>
+                    <button type='submit'
+                        className={css.btn}>Login</button>
+                    <button onClick={demo}
+                        className={css.btn}>Demo User</button>
+                </div>
             </form>
         </>
     );

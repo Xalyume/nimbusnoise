@@ -1,6 +1,7 @@
 from datetime import datetime
 from flask import Blueprint, request
 from flask_login import login_required
+from flask_wtf.form import FlaskForm
 from app.models import Song, db
 
 from app.aws import upload_file_to_s3, allowed_file, get_unique_filename
@@ -35,18 +36,12 @@ def add_song():
     Song post route. Check the song filename and upload to AWS that will return a URL if upload is successful
     '''
 
-    form = SongForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-
-    if not form.validate_on_submit():
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
     if 'song_file' not in request.files:
-        return {'errors': 'Please upload a file.'}, 400
+        return {"errors": ['Please upload a file.']}, 400
 
     song = request.files['song_file']
     if not allowed_file(song.filename):
-        return {'errors': 'File type is not supported. Please upload a MP3 filetype'}, 400
+        return {"errors": ['File type is not supported. Please upload a MP3 filetype']}, 400
 
     song.filename = get_unique_filename(song.filename)
     upload = upload_file_to_s3(song)
@@ -54,6 +49,8 @@ def add_song():
     if 'url' not in upload:
         return upload, 400
 
+    form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         url = upload['url']
@@ -67,6 +64,9 @@ def add_song():
         db.session.add(new_song)
         db.session.commit()
         return new_song.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 @song_routes.route('/<int:id>', methods=['PATCH'])

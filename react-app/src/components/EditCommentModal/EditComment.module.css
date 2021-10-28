@@ -6,3 +6,18 @@
 .btn {
     cursor: pointer;
 }
+
+.title {
+  font-size: large;
+  font-weight: bold;
+}
+
+.input_bar {
+    border: 1px solid black;
+    margin-left: 3px;
+    border-radius: 3px;
+}
+
+.edit_btn {
+    cursor: pointer;
+}

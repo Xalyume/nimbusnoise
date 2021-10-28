@@ -25,4 +25,22 @@
     margin: 0 3%;
     height: 28px;
     width: 100px;
+    cursor: pointer;
+}
+
+.input_bar {
+    border: 1px solid black;
+    margin-left: 3px;
+    border-radius: 3px;
+}
+
+.btn{
+    font-size: 15px;
+    color: #87CEEB;
+    cursor: pointer;
+    margin: 3% 0
+}
+
+.btn:hover {
+    font-weight: bolder;
 }

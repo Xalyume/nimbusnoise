@@ -19,9 +19,11 @@ const DeleteComment = ({ onClose, comment }) => {
             <p className={css.text_message}>Are you sure you want to delete your comment?</p>
             <div className={css.edit_del_btns}>
                 <button
-                    onClick={deleteFunc}>Yes</button>
+                    onClick={deleteFunc}
+                    className={css.confirm_btn}>Yes</button>
                 <button
-                    onClick={onClose}>No</button>
+                    onClick={onClose}
+                    className={css.confirm_btn}>No</button>
             </div>
         </div>
     )

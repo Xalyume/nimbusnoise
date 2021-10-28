@@ -47,7 +47,6 @@ function SongForm() {
         if (res.ok) {
             return history.push(`/songs/${res.id}`);
         } else {
-            // res returns an errors stirng, display it
             const { errors } = res;
             setErrors(errors);
             return;

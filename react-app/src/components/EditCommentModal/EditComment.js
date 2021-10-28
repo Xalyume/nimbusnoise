@@ -30,7 +30,7 @@ const EditSlice = ({ onClose, comment }) => {
 
     return (
         <div>
-            <h2>Edit your comment</h2>
+            <p className={css.title}>Edit your comment</p>
             <form onSubmit={updateSubmit}>
                 {error &&
                     <p className={css.error}>{error}</p>
@@ -40,9 +40,12 @@ const EditSlice = ({ onClose, comment }) => {
                     value={content}
                     placeholder={content}
                     onChange={(e) => setContent(e.target.value)}
+                    className={css.input_bar}
                 />
-                <button type="submit">Update</button>
-                <button onClick={() => onClose()}>Cancel</button>
+                <button type="submit"
+                    className={css.edit_btn}>Update</button>
+                <button onClick={() => onClose()}
+                    className={css.edit_btn}>Cancel</button>
             </form>
         </div>
     )

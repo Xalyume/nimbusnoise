@@ -12,3 +12,8 @@
 .btn {
     cursor: pointer;
 }
+
+.confirm_btn {
+    font-size: large;
+    cursor: pointer;
+}

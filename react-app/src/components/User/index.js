@@ -1,32 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getAlbum } from "../../store/albums";
 import { getSongThunk } from '../../store/songs';
+import { getUsers } from '../../store/users';
 
 import css from './User.module.css'
 
 function User() {
 	const dispatch = useDispatch();
-	const [user, setUser] = useState({});
+	// const [user, setUser] = useState({});
 	const { userId } = useParams();
 
-	const albums = useSelector((state) => state.albums)
-	const songs = useSelector((state) => state.songs)
+	const albums = useSelector((state) => state.albums);
+	const songs = useSelector((state) => state.songs);
+	const users = useSelector((state) => state.users);
+
+	const userArr = Object.values(users)
+	const user = userArr.find(user => user.id === parseInt(userId));
 
 	const userAlbums = (Object.values(albums)).filter(album => album.user_id === parseInt(userId));
 	const userSongs = (Object.values(songs)).filter(song => song.user_id === parseInt(userId));
 
-	useEffect(() => {
-		if (!userId) {
-			return;
-		}
-		(async () => {
-			const response = await fetch(`/api/users/${userId}`);
-			const user = await response.json();
-			setUser(user);
-		})();
-	}, [userId]);
+	// useEffect(() => {
+	// 	if (!userId) {
+	// 		return;
+	// 	}
+	// 	(async () => {
+	// 		const response = await fetch(`/api/users/${userId}`);
+	// 		const user = await response.json();
+	// 		await setUser(user);
+	// 	})();
+	// }, [userId]);
 
 	useEffect(() => {
 		dispatch(getAlbum())
@@ -36,6 +41,11 @@ function User() {
 		dispatch(getSongThunk())
 	}, [dispatch])
 
+	useEffect(() => {
+		dispatch(getUsers())
+	}, [dispatch])
+
+	const newDate = user?.created_at.split(" ");
 
 	if (!user) {
 		return null;
@@ -51,7 +61,7 @@ function User() {
 					{user.email}
 				</div>
 				<div className={css.membership_date}>
-					<strong>Member Since:</strong> {user.created_at}
+					<strong>Member Since:</strong> {newDate[2]} {newDate[1]}, {newDate[3]}
 				</div>
 			</div>
 			<div className={css.user_media_container}>
@@ -77,7 +87,8 @@ function User() {
 				<div className={css.songs_container}>
 					<p className={css.song_album}>User's Songs:</p>
 					{userSongs.map((song) => (
-						<li key={song.id}>
+						<li key={song.id}
+						className={css.song}>
 							<Link
 								to={`/songs/${song.id}`}>
 								{song.title}

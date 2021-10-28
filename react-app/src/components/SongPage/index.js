@@ -90,7 +90,7 @@ function SongPage() {
     let editDelBtns;
     if (editButtons) {
         editDelBtns = (
-            <div>
+            <div className={css.edit_button}>
                 <EditSongModal song={song} />
                 <DeleteSongModal song={song} />
             </div>

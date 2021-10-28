@@ -52,6 +52,7 @@
     width: 100px;
     background-color: white;
     font-size: small;
+    cursor: pointer;
 }
 
 .inner_drop {
@@ -61,6 +62,7 @@
 .drop_text {
     font-size: small;
     color: black;
+    cursor: pointer;
 }
 
 .contact_us {

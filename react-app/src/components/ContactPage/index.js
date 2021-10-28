@@ -7,7 +7,7 @@ function ContactPage() {
     return (
         <div className={css.outer_container}>
             <div className={css.contact_container}>
-                <p className={css.contact}>Contact Us!</p>
+                <p className={css.contact}>About Us!</p>
                 <p className={css.links}>
                     <a href="https://github.com/Xalyume/nimbusnoise"><BsGithub /> This Project's Repository</a>
                 </p>

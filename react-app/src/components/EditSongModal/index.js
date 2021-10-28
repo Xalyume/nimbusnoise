@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import EditSong from './EditSong'
 
+import css from './EditSong.module.css'
+
 function EditSongModal({ song }) {
     const [showModal, setShowModal] = useState(false);
 
@@ -17,6 +19,7 @@ function EditSongModal({ song }) {
     return (
         <>
             <button onClick={() => setShowModal(true)}
+                className={css.btn}
             >Edit</button>
             {showModal && (
                 <Modal onClose={onClose}>

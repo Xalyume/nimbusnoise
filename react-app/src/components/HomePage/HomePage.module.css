@@ -1,11 +1,15 @@
 .top_container {
     margin: 0 5%;
     padding: 1.2rem 1%;
-    height: 40vh;
+    height: 45vh;
     background-color: #87CEEB;
     color: white;
     display: flex;
     justify-content: space-between;
+    height: 40vh;
+    background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 }
 
 .right_container {
@@ -13,4 +17,51 @@
     width: 15%;
     justify-content: space-evenly;
     align-items: flex-start;
+}
+
+.right_container > * {
+    font-weight: bold;
+}
+
+.center_div {
+    margin: 0 5%;
+    text-align: center;
+    color: #87CEEB;
+    height: auto;
+}
+
+.welcome {
+    font-weight: bold;
+}
+
+.text {
+    margin: 1% 0;
+}
+
+.middle_picture {
+    margin: auto;
+    width: 50%;
+    height: 50vh;
+    background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.github_linkedin {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    border-top: 1px solid #87CEEB;
+}
+
+.inner_link_container {
+    margin-top: .5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.links {
+    font-size: 34px;
+    margin: 0 1.5rem;
+    color: #87CEEB;
 }

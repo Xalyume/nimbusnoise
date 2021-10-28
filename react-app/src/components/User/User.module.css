@@ -19,6 +19,7 @@
 
 .user_media_container {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     margin: auto;
     margin-top: 2%;
@@ -27,18 +28,44 @@
 }
 
 .albums_container {
-    width: 50%;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 3%;
+    box-sizing: border-box;
 }
 
 .albums_display_container {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    /* box-sizing: border-box; */
+}
+
+.single_album_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.songs_container {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .song_album {
     font-size: larger;
     font-weight: bold;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
+}
+
+.album_titles {
+    font-size: smaller;
+    text-align: center;
+    margin: 2px 0;
+    color: rgb(56, 56, 56);
 }
 
 .album_picture {
@@ -47,5 +74,17 @@
     background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
-    margin: 1.5rem 1.5rem;
+    margin: 1.5rem .75rem 0 .75rem;
+}
+
+.song {
+    margin: .75% 0;
+}
+
+.fieldsets {
+    border-radius: 15px;
+    border-color: #87ceeb;
+    min-width: 75%;
+    max-width: 100%;
+    box-sizing: border-box;
 }

@@ -56,10 +56,13 @@ function AlbumForm() {
     return (
         <div className={css.form_container}>
             <div className={css.form_inner}>
-                <h3>Add An Album:</h3>
+                <div className={css.card_upper}>
+                    <h1 className={css.app_name}>Nimbus Noise</h1>
+                    <h3>Add An Album</h3>
+                </div>
                 <form onSubmit={submitAlbum}
                     className={css.album_form}>
-                    {error && <h3>{error}</h3>}
+                    {error && <p className={css.error}>{error}</p>}
                     <label>Title</label>
                     <input value={title}
                         onChange={(e) => setTitle(e.target.value)}
@@ -69,10 +72,14 @@ function AlbumForm() {
                         onChange={(e) => setAlbumImage(e.target.value)}
                     />
                     <div className={css.button_container}>
-                        <button type="submit">
+                        <button
+                            className={css.button}
+                            type="submit">
                             Add Album
                         </button>
-                        <Link to='/users'>Cancel</Link>
+                        <Link
+                            className={css.button}
+                            to={`/users/${sessionUser.id}`}>Cancel</Link>
                     </div>
                 </form>
             </div>

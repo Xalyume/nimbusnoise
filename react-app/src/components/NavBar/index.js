@@ -111,7 +111,7 @@ const NavBar = () => {
 	const loggedInTwo = () => {
 		if (currentUser) {
 			return (
-				<NavLink to='/users' exact={true}
+				<NavLink to={`/users/${currentUser.id}`} exact={true}
 					className={css.app_name}>
 					Nimbus Noise
 				</NavLink>
@@ -131,7 +131,7 @@ const NavBar = () => {
 			<div className={css.left_container}>
 				{loggedInTwo()}
 				<NavLink to="/contact-us"
-				className={css.contact_us}>Contact Us</NavLink>
+				className={css.contact_us}>About Us</NavLink>
 			</div>
 			<div className={css.right_container}>
 				<NavLink to='/users' exact={true} >

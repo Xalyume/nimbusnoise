@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import css from './UserList.module.css'
+
 function UsersList() {
   const [users, setUsers] = useState([]);
 
@@ -15,17 +17,18 @@ function UsersList() {
 
   const userComponents = users.map((user) => {
     return (
-      <li key={user.id}>
+      <li key={user.id}
+      className={css.user_link}>
         <NavLink to={`/users/${user.id}`}>{user.username}</NavLink>
       </li>
     );
   });
 
   return (
-    <>
-      <h1>User List: </h1>
+    <fieldset className={css.userlist_container}>
+      <legend className={css.userlist_legend}>User List: </legend>
       <ul>{userComponents}</ul>
-    </>
+    </fieldset>
   );
 }
 

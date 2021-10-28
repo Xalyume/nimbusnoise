@@ -3,6 +3,7 @@ import { useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAlbum } from "../../store/albums";
 import { addSongThunk } from '../../store/songs';
+import { FaFileAudio } from 'react-icons/fa';
 
 import css from './SongForm.module.css'
 
@@ -18,8 +19,9 @@ function SongForm() {
 
     const [title, setTitle] = useState("");
     const [song, setSong] = useState(null);
+    const [songPath, setSongPath] = useState("Current File:");
     const [songAlbum, setAlbum] = useState("");
-    const [error, setError] = useState("");
+    const [errors, setErrors] = useState([]);
 
 
     if (!sessionUser) {
@@ -40,20 +42,14 @@ function SongForm() {
         formData.append("title", title);
         formData.append("album_id", songAlbum);
 
-        console.log(sessionUser.id)
-        console.log(song)
-        console.log(title)
-        console.log(songAlbum)
-
         let res = await dispatch(addSongThunk(formData));
-        console.log(res);
 
         if (res.ok) {
             return history.push(`/songs/${res.id}`);
         } else {
             // res returns an errors stirng, display it
             const { errors } = res;
-            setError(errors);
+            setErrors(errors);
             return;
         }
     }
@@ -61,22 +57,37 @@ function SongForm() {
     const updateSong = (e) => {
         const file = e.target.files[0];
         setSong(file);
+        const path = e.target.value.split("\\");
+        const fileName = path[path.length - 1];
+        setSongPath("Current File: " + fileName);
     }
 
     return (
         <div className={css.form_container}>
             <div className={css.form_inner}>
-                <h3>Upload a Song</h3>
+                <div className={css.card_upper}>
+                    <h1 className={css.app_name}>Nimbus Noise</h1>
+                    <h3>Upload a New Song</h3>
+                </div>
                 <form onSubmit={addSong}
                     className={css.album_form}>
-                    {error && <h3>{error}</h3>}
-                    <label>Add Song</label>
-                    <input
-                        id="song_upload"
-                        type="file"
-                        accept="mp3/*"
-                        onChange={updateSong}
-                    />
+                    {/* {errors.map((error, ind) => (
+                        <div key={ind} className={css.errors}>{error}</div>
+                    ))} */}
+                    {errors && errors.map((error, ind) => (
+                        <div key={ind} className={css.errors}>{error}</div>
+                    ))}
+                    <div>
+                        <label className={css.file_input}
+                            htmlFor="song_upload"><FaFileAudio /></label>
+                        <input
+                            id="song_upload"
+                            type="file"
+                            accept="mp3/*"
+                            onChange={updateSong}
+                        />
+                        <div className={css.song_file_pathname}>{songPath}</div>
+                    </div>
                     <label>Title</label>
                     <input type='text'
                         value={title}
@@ -84,6 +95,7 @@ function SongForm() {
                     <label>Album</label>
                     <select name="slices"
                         onChange={(e) => setAlbum(e.target.value)}
+                        className={css.select_menu}
                     >
                         <option value={null}
                             disabled="disabled"
@@ -97,13 +109,13 @@ function SongForm() {
                             </option>
                         ))}
                     </select>
-                    <div>
-                        <button>Upload</button>
-                        <Link to='/users'>Cancel</Link>
+                    <div className={css.button_container}>
+                        <button className={css.button}>Upload</button>
+                        <Link to={`/users/${sessionUser.id}`}>Cancel</Link>
                     </div>
                 </form>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import DeleteComment from './DeleteComment';
 
+import css from './DeleteComment.module.css'
+
 function DeleteCommentModal({ comment }) {
     const [showModal, setShowModal] = useState(false);
 
@@ -18,6 +20,7 @@ function DeleteCommentModal({ comment }) {
     return (
         <>
             <button onClick={() => setShowModal(true)}
+                className={css.btn}
             >Delete</button>
             {showModal && (
                 <Modal onClose={onClose}>

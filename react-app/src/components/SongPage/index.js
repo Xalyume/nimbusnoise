@@ -72,6 +72,8 @@ function SongPage() {
     }
 
     const addComment = async (e) => {
+        e.preventDefault();
+
         const comment = {
             user_id: sessionUser.id,
             song_id: song.id,
@@ -88,7 +90,7 @@ function SongPage() {
     let editDelBtns;
     if (editButtons) {
         editDelBtns = (
-            <div>
+            <div className={css.edit_button}>
                 <EditSongModal song={song} />
                 <DeleteSongModal song={song} />
             </div>
@@ -99,39 +101,57 @@ function SongPage() {
 
     return (
         <>
-            <div className={css.song_info_card}>
-                <div>
-                    <p><Link to={`/users/${user?.id}`}>{user?.username}</Link></p>
-                    <div>
-                        <h2 className={css.song_title}>{song?.title}</h2>
+            <div className={css.song_outer}>
+                <div className={css.song_info_card}>
+                    <div className={css.play_container}>
+                        <button onClick={playSong}
+                            className={css.play_button}>
+                            <BsFillPlayCircleFill />
+                        </button>
                     </div>
-                    <p className={css.album_title}>Album: <Link to={`/albums/${songAlbum?.id}`}>{songAlbum?.title}</Link></p>
-                    <p className={css.date_tag}>Added On: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
-                    <div className={css.edit_btn_container}>
-                        {editDelBtns}
+                    <div>
+                        <p><Link to={`/users/${user?.id}`}>{user?.username}</Link></p>
+                        <div>
+                            <h2 className={css.song_title}>{song?.title}</h2>
+                        </div>
+                        <p className={css.date_tag}>Added On: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
+                        <div className={css.edit_btn_container}>
+                            {editDelBtns}
+                        </div>
                     </div>
                 </div>
                 <div>
-                    <button onClick={playSong}
-                        className={css.play_button}>
-                        <BsFillPlayCircleFill />
-                    </button>
+                    <Link to={`/albums/${songAlbum?.id}`}>
+                        <div
+                            alt="album_picture"
+                            style={{
+                                backgroundImage: `url(${songAlbum?.image_url})`,
+                            }}
+                            className={css.album_picture}>
+                        </div>
+                    </Link>
+                    <p className={css.album_title}>{songAlbum?.title}</p>
                 </div>
             </div>
             <div className={css.add_comment}>
                 <div>
-                    <input
-                        placeholder='Add a comment'
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        className={css.add_input} />
-                    <button
-                        onClick={addComment}
-                    >Add a Comment</button>
+                    <form onSubmit={addComment}>
+                        <input
+                            placeholder='Add a comment'
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            className={css.add_input} />
+                        <button
+                            type="submit"
+                        >Add a Comment</button>
+                    </form>
                 </div>
             </div>
-            <div className={css.comments_container}>
-                <Comments songId={songId} />
+            <div className={css.comments_header}>
+                <h2>Comments:</h2>
+                <div className={css.comments_container}>
+                    <Comments songId={songId} />
+                </div>
             </div>
         </>
     )

@@ -9,11 +9,31 @@
 
 .form_inner {
     background-color: #87CEEB;
+    color: white;
     margin-top: 2rem;
-    text-align: center;
+    text-align: left;
     padding: 3%;
-    height: 43%;
+    height: 50%;
     width: 30%;
+}
+
+.card_upper {
+    width: 100%;
+    padding-bottom: 1%;;
+    border-bottom: 1px solid white;
+}
+
+.app_name {
+    margin-bottom: 3px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file_input {
+    font-size: 50px;
+    cursor: pointer;
 }
 
 .album_form {
@@ -24,11 +44,31 @@
 }
 
 .album_form > input {
-    padding: 2%;
-    /* width: 75%; */
+    padding: 1.75%;
+}
+
+.select_menu {
+    padding: 1.75%;
+    border: none;
 }
 
 .button_container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    margin-bottom: 3%;
+}
+
+.errors {
+    font-size: small;
+    color: rgba(255, 0, 0, 0.7);
+}
+
+.button {
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.song_file_pathname {
+    font-size: smaller;
 }

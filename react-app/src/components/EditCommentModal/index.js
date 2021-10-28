@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import EditComment from './EditComment'
+import EditComment from './EditComment';
+
+import css from './EditComment.module.css';
 
 function EditSongModal({ comment }) {
     const [showModal, setShowModal] = useState(false);
@@ -17,6 +19,7 @@ function EditSongModal({ comment }) {
     return (
         <>
             <button onClick={() => setShowModal(true)}
+            className={css.btn}
             >Edit</button>
             {showModal && (
                 <Modal onClose={onClose}>

@@ -29,8 +29,6 @@ export const addSongThunk = (formData) => async (dispatch) => {
         method: "POST",
         body: formData,
     });
-    
-    console.log("THUNKER RES HOMIE", res)
 
     if (res.ok) {
         const newSong = await res.json();
@@ -95,8 +93,6 @@ export default function reducer(state = initialState, action) {
             return newState;
         case EDIT_SONG:
             newState = Object.assign({}, state)
-            console.log(newState[action.payload.id]["title"]);
-            console.log(action.payload)
             newState[action.payload.id]["title"] = action.payload.title;
             return newState;
         case DEL_SONG:

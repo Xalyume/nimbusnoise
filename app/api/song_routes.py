@@ -8,6 +8,17 @@ from app.forms import SongForm
 
 song_routes = Blueprint('songs', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{error}')
+    return errorMessages
+
+
 @song_routes.route('')
 def song():
     '''
@@ -23,8 +34,14 @@ def add_song():
     '''
     Song post route. Check the song filename and upload to AWS that will return a URL if upload is successful
     '''
+
+    form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if not form.validate_on_submit():
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
     if 'song_file' not in request.files:
-        print("WE HIT THIS SHIT BRO")
         return {'errors': 'Please upload a file.'}, 400
 
     song = request.files['song_file']
@@ -37,8 +54,6 @@ def add_song():
     if 'url' not in upload:
         return upload, 400
 
-    form = SongForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         url = upload['url']

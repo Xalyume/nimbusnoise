@@ -25,10 +25,10 @@ function UsersList() {
   });
 
   return (
-    <div className={css.userlist_container}>
-      <h2>User List: </h2>
+    <fieldset className={css.userlist_container}>
+      <legend className={css.userlist_legend}>User List: </legend>
       <ul>{userComponents}</ul>
-    </div>
+    </fieldset>
   );
 }
 

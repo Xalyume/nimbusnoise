@@ -29,13 +29,18 @@
 
 .albums_container {
     width: 100%;
+    max-width: 100%;
     margin-bottom: 3%;
+    box-sizing: border-box;
 }
 
 .albums_display_container {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    /* box-sizing: border-box; */
 }
 
 .single_album_container{
@@ -43,6 +48,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.songs_container {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .song_album {
@@ -53,7 +63,8 @@
 
 .album_titles {
     font-size: smaller;
-    margin-top: 3px;
+    text-align: center;
+    margin: 2px 0;
     color: rgb(56, 56, 56);
 }
 
@@ -63,7 +74,7 @@
     background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
-    margin: 1.5rem 1.5rem 0 1.5rem;
+    margin: 1.5rem .75rem 0 .75rem;
 }
 
 .song {
@@ -73,4 +84,7 @@
 .fieldsets {
     border-radius: 15px;
     border-color: #87ceeb;
+    min-width: 75%;
+    max-width: 100%;
+    box-sizing: border-box;
 }

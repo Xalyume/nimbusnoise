@@ -27,6 +27,15 @@
     margin-bottom: 3px;
 }
 
+input[type="file"] {
+    display: none;
+}
+
+.file_input {
+    font-size: 50px;
+    cursor: pointer;
+}
+
 .album_form {
     display: flex;
     flex-direction: column;
@@ -49,7 +58,7 @@
     margin-bottom: 3%;
 }
 
-.error {
+.errors {
     font-size: small;
     color: rgba(255, 0, 0, 0.7);
 }
@@ -57,4 +66,9 @@
 .button {
     color: white;
     font-size: 15px;
+    cursor: pointer;
+}
+
+.song_file_pathname {
+    font-size: smaller;
 }

@@ -2,3 +2,7 @@
     color: red;
     font-size: small;
 }
+
+.btn {
+    cursor: pointer;
+}

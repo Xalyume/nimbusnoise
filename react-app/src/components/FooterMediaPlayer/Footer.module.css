@@ -1,7 +1,7 @@
 .footer_container {
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: .7rem;
     padding: 1rem;
     position: fixed;
     bottom: 0;

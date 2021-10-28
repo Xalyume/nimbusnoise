@@ -1,4 +1,8 @@
-/* TODO Add site wide styles */
+html {
+  width: 100vw;
+  height: 108vh;
+}
+
 body {
   padding: 50px;
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;

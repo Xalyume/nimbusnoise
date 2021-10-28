@@ -36,7 +36,7 @@
 
 .albums_display_container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     max-width: 100%;
     overflow-x: auto;

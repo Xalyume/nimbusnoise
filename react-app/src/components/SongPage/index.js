@@ -122,15 +122,15 @@ function SongPage() {
                 </div>
                 <div>
                     <Link to={`/albums/${songAlbum?.id}`}>
-                    <div
-                        alt="album_picture"
-                        style={{
-                            backgroundImage: `url(${songAlbum?.image_url})`,
-                        }}
-                        className={css.album_picture}>
-                    </div>
+                        <div
+                            alt="album_picture"
+                            style={{
+                                backgroundImage: `url(${songAlbum?.image_url})`,
+                            }}
+                            className={css.album_picture}>
+                        </div>
                     </Link>
-                    <p className={css.album_title}>Album:{songAlbum?.title}</p>
+                    <p className={css.album_title}>{songAlbum?.title}</p>
                 </div>
             </div>
             <div className={css.add_comment}>
@@ -147,8 +147,11 @@ function SongPage() {
                     </form>
                 </div>
             </div>
-            <div className={css.comments_container}>
-                <Comments songId={songId} />
+            <div className={css.comments_header}>
+                <h2>Comments:</h2>
+                <div className={css.comments_container}>
+                    <Comments songId={songId} />
+                </div>
             </div>
         </>
     )

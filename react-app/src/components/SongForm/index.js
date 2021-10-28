@@ -66,11 +66,14 @@ function SongForm() {
     return (
         <div className={css.form_container}>
             <div className={css.form_inner}>
-                <h3>Upload a Song</h3>
+                <div className={css.card_upper}>
+                    <h1 className={css.app_name}>Nimbus Noise</h1>
+                    <h3>Upload a New Song</h3>
+                </div>
                 <form onSubmit={addSong}
                     className={css.album_form}>
-                    {error && <h3>{error}</h3>}
-                    <label>Add Song</label>
+                    {error && <p className={css.error}>{error}</p>}
+                    <label>Song File</label>
                     <input
                         id="song_upload"
                         type="file"
@@ -84,6 +87,7 @@ function SongForm() {
                     <label>Album</label>
                     <select name="slices"
                         onChange={(e) => setAlbum(e.target.value)}
+                        className={css.select_menu}
                     >
                         <option value={null}
                             disabled="disabled"
@@ -97,13 +101,13 @@ function SongForm() {
                             </option>
                         ))}
                     </select>
-                    <div>
-                        <button>Upload</button>
+                    <div className={css.button_container }>
+                        <button className={css.button}>Upload</button>
                         <Link to={`/users/${sessionUser.id}`}>Cancel</Link>
                     </div>
                 </form>
             </div>
-        </div>
+        </div >
     )
 }
 

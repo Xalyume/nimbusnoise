@@ -73,13 +73,18 @@ function User() {
 								<li key={album.id}>
 									<Link
 										to={`/albums/${album.id}`}>
-										<div
-											alt="album_picture"
-											style={{
-												backgroundImage: `url(${album.image_url})`,
-											}}
-											className={css.album_picture}
-										></div>
+										<div className={css.single_album_container}>
+											<div
+												alt="album_picture"
+												style={{
+													backgroundImage: `url(${album.image_url})`,
+												}}
+												className={css.album_picture}
+											></div>
+											<span className={css.album_titles}>
+												{album.title}
+											</span>
+										</div>
 									</Link>
 								</li>
 							))}

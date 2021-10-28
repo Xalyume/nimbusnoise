@@ -64,11 +64,15 @@
   border: 1px solid black;
 }
 
-.comments_container {
+.comments_header {
   margin: auto;
   margin-top: 2%;
   width: 70%;
+}
+
+.comments_container {
   padding: 2%;
+  margin-top: .3%;
   border: 1px solid black;
 }
 

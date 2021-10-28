@@ -99,7 +99,7 @@ function SongForm() {
                     </select>
                     <div>
                         <button>Upload</button>
-                        <Link to='/users'>Cancel</Link>
+                        <Link to={`/users/${sessionUser.id}`}>Cancel</Link>
                     </div>
                 </form>
             </div>

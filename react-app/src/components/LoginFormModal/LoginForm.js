@@ -18,11 +18,12 @@ const LoginForm = ({ onClose }) => {
     const onLogin = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password));
+
         if (data) {
             setErrors(data);
         } else {
             onClose()
-            history.push("/users")
+            history.push(`/users/${data.id}`)
         }
     };
 
@@ -41,8 +42,8 @@ const LoginForm = ({ onClose }) => {
     const demo = async (e) => {
         e.preventDefault();
 
-        await dispatch(login("demo@aa.io", "password"));
-        history.push("/users");
+        const demoUser = await dispatch(login("demo@aa.io", "password"));
+        history.push(`/users/${demoUser.id}`)
     };
 
     return (

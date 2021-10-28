@@ -60,6 +60,7 @@ def edit_title(id):
     '''
     Route to edit the song title for a specific song
     '''
+
     update_song = Song.query.filter(id == Song.id).first()
     update_song.title = request.data.decode('UTF-8')[1:-1]
 

@@ -66,35 +66,41 @@ function User() {
 			</div>
 			<div className={css.user_media_container}>
 				<div className={css.albums_container}>
-					<p className={css.song_album}>User's Albums:</p>
-					<div className={css.albums_display_container}>
-						{userAlbums.map((album) => (
-							<li key={album.id}>
+					<fieldset className={css.fieldsets}>
+						<legend className={css.song_album}>User's Albums:</legend>
+						<div className={css.albums_display_container}>
+							{userAlbums.map((album) => (
+								<li key={album.id}>
+									<Link
+										to={`/albums/${album.id}`}>
+										<div
+											alt="album_picture"
+											style={{
+												backgroundImage: `url(${album.image_url})`,
+											}}
+											className={css.album_picture}
+										></div>
+									</Link>
+								</li>
+							))}
+						</div>
+					</fieldset>
+				</div>
+				<div className={css.songs_container}>
+					<fieldset className={css.fieldsets}>
+						<legend className={css.song_album}>
+							User's Songs:
+						</legend>
+						{userSongs.map((song) => (
+							<li key={song.id}
+								className={css.song}>
 								<Link
-									to={`/albums/${album.id}`}>
-									<div
-										alt="album_picture"
-										style={{
-											backgroundImage: `url(${album.image_url})`,
-										}}
-										className={css.album_picture}
-									></div>
+									to={`/songs/${song.id}`}>
+									{song.title}
 								</Link>
 							</li>
 						))}
-					</div>
-				</div>
-				<div className={css.songs_container}>
-					<p className={css.song_album}>User's Songs:</p>
-					{userSongs.map((song) => (
-						<li key={song.id}
-						className={css.song}>
-							<Link
-								to={`/songs/${song.id}`}>
-								{song.title}
-							</Link>
-						</li>
-					))}
+					</fieldset>
 				</div>
 			</div>
 		</div>

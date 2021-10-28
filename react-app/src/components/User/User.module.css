@@ -56,3 +56,7 @@
 .song {
     margin: .75% 0;
 }
+
+.fieldsets {
+    border-radius: 15px;
+}

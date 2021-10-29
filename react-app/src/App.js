@@ -12,6 +12,7 @@ import AlbumPage from './components/AlbumPage';
 import SongPage from './components/SongPage';
 import ContactPage from './components/ContactPage'
 import FooterMediaPlayer from './components/FooterMediaPlayer';
+import PageNotFound from './components/PageNotFound'
 import { authenticate } from './store/session';
 
 function App() {
@@ -69,6 +70,10 @@ function App() {
 					<NavBar />
 					<ContactPage />
 					<FooterMediaPlayer />
+				</Route>
+				<Route>
+					<NavBar />
+					<PageNotFound />
 				</Route>
 			</Switch>
 		</BrowserRouter>

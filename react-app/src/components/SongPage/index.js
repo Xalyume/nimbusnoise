@@ -36,6 +36,8 @@ function SongPage() {
     const [newComment, setNewComment] = useState("");
     // const [, setNewRender] = useState({});
 
+    
+
     if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
         history.push("/users");
     }

@@ -26,8 +26,6 @@ def add_comment():
     form = CommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
-    print("-"*10, form.data)
-
     if form.validate_on_submit():
         comment = Comment(
             user_id=user_id,

@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
 
 def song_title_space(form, field):
-    title = form.data
+    title = form.data["title"]
 
     if title.isspace():
         raise ValidationError(

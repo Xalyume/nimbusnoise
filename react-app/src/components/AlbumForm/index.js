@@ -23,6 +23,7 @@ function AlbumForm() {
     const submitAlbum = async (e) => {
         e.preventDefault();
 
+        setErrors([]);
         let album;
 
         if (!albumImage) {

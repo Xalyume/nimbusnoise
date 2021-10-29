@@ -25,7 +25,6 @@ function Comments({ songId }) {
         songComments = songArr.filter((comment) => comment["song_id"] === parseInt(songId));
 
         const commentsSection = Object.values(songComments)?.map((comment) => {
-            const newDate = comment?.created_at.split(" ");
 
             return (
                 <div key={comment.id} className={css.comment_container}>
@@ -49,7 +48,7 @@ function Comments({ songId }) {
                         </div>
                     </div>
                     <div className={css.date}>
-                        On {newDate[2]} {newDate[1]}, {newDate[3]}
+                        On {comment?.created_at}
                     </div>
                 </div>
             );

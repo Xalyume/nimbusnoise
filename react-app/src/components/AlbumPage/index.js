@@ -13,7 +13,8 @@ function AlbumPage() {
 
     const { albumId } = useParams();
 
-    const album = albums[albumId]
+    const album = albums[albumId];
+
     let user;
     if (album) {
         const userId = album["user_id"];
@@ -35,10 +36,15 @@ function AlbumPage() {
     return (
         <>
             <div className={css.album_info_card}>
-                <div>
-                    <h2 className={css.album_tag}>{album.title}</h2>
-                    <p><Link to={`/users/${user?.id}`}>{user?.username}</Link></p>
-                    <p className={css.date_tag}>Created At: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
+                <div className={css.left_container}>
+                    <div>
+                        <h2 className={css.album_tag}>{album.title}</h2>
+                        <p> Added by: <Link to={`/users/${user?.id}`}>{user?.username}</Link></p>
+                        <p className={css.date_tag}>Created At: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
+                    </div>
+                    <div>
+                        Number of Songs: {Object.values(album["songs"]).length}
+                    </div>
                 </div>
                 <div
                     alt="album_picture"
@@ -48,10 +54,11 @@ function AlbumPage() {
                     className={css.album_picture}
                 ></div>
             </div>
-            <div className={css.songs_container}>
-                <p>Songs in this Album:</p>
-                {Object.values(album["songs"]).map((song) => (
+            <fieldset className={css.songs_container}>
+                <legend>Songlist:</legend>
+                {Object.values(album["songs"]).map((song, index) => (
                     <li key={song.id}>
+                        <span className={css.track_num}>Track {index + 1}: </span>
                         <Link
                             to={`/songs/${song.id}`}
                             className={css.song_title}>
@@ -59,7 +66,7 @@ function AlbumPage() {
                         </Link>
                     </li>
                 ))}
-            </div>
+            </fieldset>
         </>
     )
 }

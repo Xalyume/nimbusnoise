@@ -97,6 +97,27 @@ function SongPage() {
         );
     }
 
+    let addCommentBtn;
+    if (sessionUser) {
+        addCommentBtn = (
+            <form onSubmit={addComment}>
+                <input
+                    placeholder='Add a comment'
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    className={css.add_input} />
+                <button
+                    type="submit"
+                    className={css.add_comment}
+                >Add a Comment</button>
+            </form>
+        );
+    } else {
+        addCommentBtn = (
+            <p>You need to log in or sign up to post a comment.</p>
+        )
+    }
+
     if (!song) return null;
 
     return (
@@ -135,16 +156,7 @@ function SongPage() {
             </div>
             <div className={css.add_comment}>
                 <div>
-                    <form onSubmit={addComment}>
-                        <input
-                            placeholder='Add a comment'
-                            value={newComment}
-                            onChange={(e) => setNewComment(e.target.value)}
-                            className={css.add_input} />
-                        <button
-                            type="submit"
-                        >Add a Comment</button>
-                    </form>
+                    {addCommentBtn}
                 </div>
             </div>
             <div className={css.comments_header}>

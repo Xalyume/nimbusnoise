@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LoginFormModal from '../LoginFormModal'
 import SignUpModal from '../SignUpModal/';
-import { BsGithub, BsLinkedin } from 'react-icons/bs';
+import { BsGithub, BsLinkedin, BsClouds } from 'react-icons/bs';
 
 import css from './HomePage.module.css'
 
@@ -13,47 +13,50 @@ function HomePage() {
     const sessionUser = useSelector((state) => state.session.user);
 
     if (sessionUser) {
-        history.push("/users")
+        history.push(`/users/${sessionUser.id}`)
     }
 
     return (
         <div>
-            <div className={css.top_container}
+            <div className={css.outter_upper_container}
                 alt="album_picture"
                 style={{
-                    backgroundImage: `url(https://picjumbo.com/wp-content/uploads/listening-streaming-music-from-laptop-in-bed-2210x1473.jpg)`,
+                    backgroundImage: `url(https://images.unsplash.com/photo-1556196148-1fb724238998?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhZHBob25lcyUyMGxhcHRvcHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80)`,
                 }}
             >
-                <div>
-                    <h1>Nimbus Noise</h1>
+                <div className={css.top_container}>
+                    <div>
+                        <p className={css.left_logo}>Nimbus Noise</p>
+                    </div>
+                    <div className={css.right_container}>
+                        <LoginFormModal />
+                        <SignUpModal />
+                    </div>
                 </div>
-                <div className={css.right_container}>
-                    <LoginFormModal />
-                    <SignUpModal />
-                </div>
+                <h1 className={css.central_text}>Nimbus Noise</h1>
             </div>
             <div className={css.center_div}>
                 <h1 className={css.welcome}>Welcome to Nimbus Noise!</h1>
                 <p className={css.text}>At Nimbus Noise, we strive to help people connect through music</p>
-                <p className={css.text}>Come share your music and discover new music!</p>
-                <div
-                    alt="album_picture"
-                    style={{
-                        backgroundImage: `url(https://images.theconversation.com/files/296814/original/file-20191014-135509-xpdud2.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=754&fit=clip)`,
-                    }}
-                    className={css.middle_picture}
-                ></div>
+                <p className={css.text}>Users can add their own albums and songs and play them directly on the site!</p>
+                <p className={css.text}>Additioanally, users can visit other users' pages and listen to the songs they've uploaded and leave comments.</p>
+                <br />
+                <p className={css.text2}>Come join Nimbus Noise and share your music as well as discover new music today!!</p>
+                <br />
+                <p className={css.cloud_icon}>
+                    <BsClouds />
+                </p>
             </div>
-            <div className={css.github_linkedin}>
-                <p className={css.inner_link_container}>
+            <footer className={css.github_linkedin}>
+                <div className={css.inner_link_container}>
                     <a
                         className={css.links}
-                        href="https://github.com/Xalyume/"><BsGithub /></a>
+                        href="httdivs://github.com/Xalyume/"><BsGithub /></a>
                     <a
                         className={css.links}
                         href="https://www.linkedin.com/in/william-h-jang/"><BsLinkedin /></a>
-                </p>
-            </div>
+                </div>
+            </footer>
         </div>
     )
 }

@@ -92,7 +92,7 @@ function User() {
 					</fieldset>
 				</div>
 				<div className={css.songs_container}>
-					<fieldset className={css.fieldsets}>
+					<fieldset className={css.fieldsets_songs}>
 						<legend className={css.song_album}>
 							User's Songs:
 						</legend>

@@ -60,7 +60,9 @@ const SignUpForm = ({ onClose }) => {
 				))}
 			</div>
 			<div>
-				<label>User Name</label>
+				<div>
+					<label>User Name</label>
+				</div>
 				<input
 					type='text'
 					name='username'
@@ -71,7 +73,9 @@ const SignUpForm = ({ onClose }) => {
 				></input>
 			</div>
 			<div>
-				<label>Email</label>
+				<div>
+					<label>Email</label>
+				</div>
 				<input
 					type='text'
 					name='email'
@@ -82,7 +86,9 @@ const SignUpForm = ({ onClose }) => {
 				></input>
 			</div>
 			<div>
-				<label>Password</label>
+				<div>
+					<label>Password</label>
+				</div>
 				<input
 					type='password'
 					name='password'
@@ -93,7 +99,9 @@ const SignUpForm = ({ onClose }) => {
 				></input>
 			</div>
 			<div>
-				<label>Confirm Password</label>
+				<div>
+					<label>Confirm Password</label>
+				</div>
 				<input
 					type='password'
 					name='repeat_password'

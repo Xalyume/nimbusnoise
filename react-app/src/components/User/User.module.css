@@ -32,6 +32,8 @@
     max-width: 100%;
     margin-bottom: 3%;
     box-sizing: border-box;
+    min-height: 220px;
+    max-height: 220px;
 }
 
 .albums_display_container {
@@ -53,6 +55,9 @@
 .songs_container {
     width: 100%;
     box-sizing: border-box;
+    min-height: 200px;
+    max-height: 200px;
+    overflow: auto;
 }
 
 .song_album {
@@ -77,6 +82,10 @@
     margin: 1.5rem .75rem 0 .75rem;
 }
 
+.album_picture:hover {
+    box-shadow: 5px 5px 5px gray;
+}
+
 .song {
     margin: .75% 0;
 }
@@ -87,4 +96,19 @@
     min-width: 75%;
     max-width: 100%;
     box-sizing: border-box;
+    min-height: 220px;
+    max-height: 220px;
 }
+ .fieldsets_songs {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    flex-wrap: wrap;
+    border-radius: 15px;
+    border-color: #87ceeb;
+    min-width: 75%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 180px;
+    max-height: 180px;
+ }

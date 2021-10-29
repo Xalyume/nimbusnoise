@@ -31,10 +31,13 @@ const EditSlice = ({ onClose, song }) => {
     return (
         <div className={css.edit_container}>
             <p className={css.title}>Edit your Song's title.</p>
-            <form onSubmit={updateSubmit}>
-                {error &&
-                    <p className={css.error}>{error}</p>
-                }
+            <form onSubmit={updateSubmit}
+            className={css.edit_form}>
+                <div>
+                    {error &&
+                        <p className={css.error}>{error}</p>
+                    }
+                </div>
                 <input
                     type="text"
                     value={title}
@@ -42,13 +45,13 @@ const EditSlice = ({ onClose, song }) => {
                     onChange={(e) => setTitle(e.target.value)}
                     className={css.input_bar}
                 />
+                <div>
+                    <button type="submit"
+                        className={css.edit_btn}>Update</button>
+                    <button onClick={() => onClose()}
+                        className={css.edit_btn}>Cancel</button>
+                </div>
             </form>
-            <div className={css.buttons_div}>
-                <button type="submit"
-                    className={css.edit_btn}>Update</button>
-                <button onClick={() => onClose()}
-                    className={css.edit_btn}>Cancel</button>
-            </div>
         </div>
     )
 }

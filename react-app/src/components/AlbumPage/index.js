@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAlbum } from "../../store/albums";
 import { getSongThunk } from '../../store/songs';
+import DeleteAlbumModal from "../DeleteAlbumModal";
 
 import css from './AlbumPage.module.css';
 
 function AlbumPage() {
-    const dispatch = useDispatch()
-    const albums = useSelector((state) => state.albums)
+    const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user);
+    const albums = useSelector((state) => state.albums);
     const userList = useSelector((state) => state.users);
+
+    const [deleteBtn, setDeleteBtn] = useState(false);
 
     const { albumId } = useParams();
 
@@ -24,12 +28,30 @@ function AlbumPage() {
     const newDate = album?.created_at.split(" ");
 
     useEffect(() => {
+        if (sessionUser?.id) {
+            if (sessionUser?.id === album?.user_id) {
+                setDeleteBtn(true);
+            }
+        }
+    }, [sessionUser?.id, album?.user_id]);
+
+
+    useEffect(() => {
         dispatch(getAlbum())
     }, [dispatch])
 
     useEffect(() => {
         dispatch(getSongThunk())
     }, [dispatch])
+
+    let deleteButton;
+    if (deleteBtn) {
+        deleteButton = (
+            <div className={css.edit_button}>
+                <DeleteAlbumModal album={album} />
+            </div>
+        );
+    }
 
     if (!album) return null;
 
@@ -41,6 +63,9 @@ function AlbumPage() {
                         <h2 className={css.album_tag}>{album.title}</h2>
                         <p> Added by: <Link to={`/users/${user?.id}`}>{user?.username}</Link></p>
                         <p className={css.date_tag}>Created At: {newDate[2]} {newDate[1]}, {newDate[3]} </p>
+                    </div>
+                    <div>
+                        {deleteButton}
                     </div>
                     <div>
                         Number of Songs: {Object.values(album["songs"]).length}

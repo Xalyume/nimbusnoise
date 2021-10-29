@@ -1,5 +1,6 @@
-const ADD_ALBUM = "albums/ADD_ALBUM"
-const GET_ALBUMS = "albums/GET_ALBUMS"
+const ADD_ALBUM = "albums/ADD_ALBUM";
+const GET_ALBUMS = "albums/GET_ALBUMS";
+const DELETE_ALBUM = "albums/DELETE_ALBUM";
 
 const add = (album) => ({
     type: ADD_ALBUM,
@@ -8,6 +9,11 @@ const add = (album) => ({
 
 const get = (album) => ({
     type: GET_ALBUMS,
+    payload: album
+})
+
+const del = (album) => ({
+    type: DELETE_ALBUM,
     payload: album
 })
 
@@ -26,6 +32,9 @@ export const addAlbum = (album) => async (dispatch) => {
         dispatch(add(newAlbum));
 
         return { ok: true, id: newAlbum.id };
+    } else {
+        const response = await res.json();
+        return { ok: false, errors: response.errors };
     }
 }
 
@@ -37,6 +46,18 @@ export const getAlbum = () => async (dispatch) => {
         dispatch(get(query));
     }
 }
+
+export const deleteAlbumThunk = (id) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${id}`, {
+        method: "DELETE",
+    });
+    if (res.ok) {
+        await res.json();
+        dispatch(del(id));
+        return null
+    }
+}
+
 
 const initialState = {};
 
@@ -51,6 +72,10 @@ export default function reducer(state = initialState, action) {
             newState = Object.assign({}, state)
             const allAlbums = action.payload;
             Object.values(allAlbums).forEach((album) => { newState[album.id] = album; });
+            return newState;
+        case DELETE_ALBUM:
+            newState = Object.assign({}, state)
+            delete newState[action.payload];
             return newState;
         default:
             return state;

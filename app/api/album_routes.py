@@ -7,6 +7,17 @@ from app.forms import AlbumForm
 
 album_routes = Blueprint('albums', __name__)
 
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{error}')
+    return errorMessages
+
+
 @album_routes.route('')
 def albums():
     '''
@@ -38,5 +49,21 @@ def add_album():
         db.session.commit()
         return album.to_dict()
     else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-        return form.errors
+@album_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def del_album(id):
+    '''
+    Song delete route.
+    Work on deleting from AWS bucket and database
+    '''
+    album_to_delete = Album.query.filter(Album.id == id).first()
+
+    if not album_to_delete:
+        return 'Nothing to delete'
+    else:
+
+        db.session.delete(album_to_delete)
+        db.session.commit()
+        return {'res': True}

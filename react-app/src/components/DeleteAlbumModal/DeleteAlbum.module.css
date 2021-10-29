@@ -1,0 +1,20 @@
+.text_message {
+    /* font-size: small; */
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+.edit_del_btns {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    color: white;
+    cursor: pointer;
+}
+
+.confirm_btn {
+    font-size: large;
+    cursor: pointer;
+}

@@ -32,3 +32,10 @@
 .edit_btn {
     cursor: pointer;
 }
+
+.edit_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}

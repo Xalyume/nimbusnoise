@@ -52,7 +52,7 @@ function User() {
 	}
 
 	return (
-		<div>
+		<div className={css.body_container}>
 			<div className={css.user_card_container}>
 				<div className={css.username_tag}>
 					{user.username}

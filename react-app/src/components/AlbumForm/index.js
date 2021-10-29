@@ -67,7 +67,7 @@ function AlbumForm() {
                     <input value={title}
                         onChange={(e) => setTitle(e.target.value)}
                     />
-                    <label>Album Image</label>
+                    <label>Album Image <span className={css.optional}>(optional)</span></label>
                     <input value={albumImage}
                         onChange={(e) => setAlbumImage(e.target.value)}
                     />

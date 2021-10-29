@@ -1,3 +1,7 @@
+body {
+  height: 110vh;
+}
+
 .comment_container {
   margin: 1% 0;
   padding-bottom: 3px;
@@ -7,6 +11,8 @@
 .inner_container {
     display: flex;
     justify-content: space-between;
+    min-height: 34px;
+    max-height: 34px;
 }
 
 .username {

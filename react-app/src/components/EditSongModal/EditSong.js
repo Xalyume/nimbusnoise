@@ -42,11 +42,13 @@ const EditSlice = ({ onClose, song }) => {
                     onChange={(e) => setTitle(e.target.value)}
                     className={css.input_bar}
                 />
+            </form>
+            <div className={css.buttons_div}>
                 <button type="submit"
                     className={css.edit_btn}>Update</button>
                 <button onClick={() => onClose()}
                     className={css.edit_btn}>Cancel</button>
-            </form>
+            </div>
         </div>
     )
 }

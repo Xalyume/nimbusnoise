@@ -57,7 +57,9 @@ const LoginForm = ({ onClose }) => {
                     ))}
                 </div>
                 <div>
-                    <label htmlFor='email'>Email</label>
+                    <div>
+                        <label htmlFor='email'>Email</label>
+                    </div>
                     <input
                         name='email'
                         type='text'
@@ -68,7 +70,9 @@ const LoginForm = ({ onClose }) => {
                     />
                 </div>
                 <div>
-                    <label htmlFor='password'>Password</label>
+                    <div>
+                        <label htmlFor='password'>Password</label>
+                    </div>
                     <input
                         name='password'
                         type='password'

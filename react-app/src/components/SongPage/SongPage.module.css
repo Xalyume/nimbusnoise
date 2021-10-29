@@ -67,13 +67,17 @@
 .comments_header {
   margin: auto;
   margin-top: 2%;
-  width: 70%;
+  min-width: 70%;
+  max-width: 70%;
 }
 
 .comments_container {
   padding: 2%;
   margin-top: .3%;
   border: 1px solid black;
+  min-height: 18rem;
+  max-height: 18rem;
+  overflow-y: auto;
 }
 
 .play_container {
@@ -92,4 +96,8 @@
 
 .album_picture:hover {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add_comment {
+  cursor: pointer;
 }

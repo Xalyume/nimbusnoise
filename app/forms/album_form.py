@@ -4,8 +4,8 @@ from wtforms.validators import DataRequired, Length, ValidationError
 
 
 def album_is_space(form, field):
-    title = form.data
-
+    title = form.data["title"]
+    
     if title.isspace():
         raise ValidationError(
             "Title cannot be all spaces"

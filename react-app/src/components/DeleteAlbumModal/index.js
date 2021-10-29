@@ -21,7 +21,7 @@ function DeleteAlbumModal({ album }) {
         <>
             <button onClick={() => setShowModal(true)}
                 className={css.btn}
-            >Delete</button>
+            >Delete this Album</button>
             {showModal && (
                 <Modal onClose={onClose}>
                     <DeleteAlbum onClose={onClose} album={album} />

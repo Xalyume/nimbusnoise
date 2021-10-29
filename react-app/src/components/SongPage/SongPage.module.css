@@ -65,10 +65,10 @@
 }
 
 .comments_header {
-  margin: auto;
-  margin-top: 2%;
+  margin: 2% auto 2% auto;
   min-width: 70%;
   max-width: 70%;
+  height: 390px;
 }
 
 .comments_container {

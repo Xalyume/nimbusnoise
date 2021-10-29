@@ -1,3 +1,8 @@
+.body_container {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .user_card_container {
     margin: auto;
     margin-top: 2%;
@@ -58,6 +63,7 @@
     min-height: 200px;
     max-height: 200px;
     overflow: auto;
+    margin-bottom: 2%;
 }
 
 .song_album {

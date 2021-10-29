@@ -73,9 +73,11 @@ function SongForm() {
                     {/* {errors.map((error, ind) => (
                         <div key={ind} className={css.errors}>{error}</div>
                     ))} */}
-                    {errors && errors.map((error, ind) => (
-                        <div key={ind} className={css.errors}>{error}</div>
-                    ))}
+                    <div>
+                        {errors && errors.map((error, ind) => (
+                            <div key={ind} className={css.errors}>{error}</div>
+                        ))}
+                    </div>
                     <div>
                         <label className={css.file_input}
                             htmlFor="song_upload"><FaFileAudio /></label>

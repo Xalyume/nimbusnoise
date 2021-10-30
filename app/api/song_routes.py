@@ -99,4 +99,4 @@ def del_song(id):
 
         db.session.delete(song_to_delete)
         db.session.commit()
-        return {'res': True}
+        return {"ok": True}

@@ -70,10 +70,11 @@ export const delSongThunk = (id) => async (dispatch) => {
     const res = await fetch(`/api/songs/${id}`, {
         method: "DELETE",
     });
+
     if (res.ok) {
-        await res.json();
-        dispatch(del(id));
-        return null
+        // await res.json();
+        await dispatch(del(id));
+        return { ok: true }
     }
 }
 

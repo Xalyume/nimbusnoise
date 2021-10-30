@@ -108,7 +108,7 @@
  .fieldsets_songs {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     flex-wrap: wrap;
     border-radius: 15px;
     border-color: #87ceeb;

@@ -25,25 +25,16 @@ function SongPage() {
     const sessionUser = useSelector((state) => state.session.user);
     const userList = useSelector((state) => state.users);
 
+    const [editButtons, setEditButtons] = useState(false);
+    const [newComment, setNewComment] = useState("");
+    // const [, setNewRender] = useState({});
+
     const song = songs[songId];
     let user;
     if (song) {
         const userId = song["user_id"];
         user = userList[userId];
     }
-
-    const [editButtons, setEditButtons] = useState(false);
-    const [newComment, setNewComment] = useState("");
-    // const [, setNewRender] = useState({});
-
-    if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
-        history.push("/users");
-    }
-
-    const albumArr = Object.values(albums)
-    const songAlbum = albumArr.find(album => album["id"] === song["album_id"])
-
-    const newDate = song?.created_at.split(" ");
 
     useEffect(() => {
         dispatch(getSongThunk())
@@ -64,6 +55,17 @@ function SongPage() {
             }
         }
     }, [sessionUser?.id, song?.user_id]);
+
+    if (!song) return null;
+
+    if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
+        history.push("/users");
+    }
+
+    const albumArr = Object.values(albums)
+    const songAlbum = albumArr.find(album => album["id"] === song["album_id"])
+
+    const newDate = song?.created_at.split(" ");
 
     const playSong = async () => {
         await setCurrentSong(song?.song_file);
@@ -117,8 +119,6 @@ function SongPage() {
             <p>You need to log in or sign up to post a comment.</p>
         )
     }
-
-    if (!song) return null;
 
     return (
         <>

@@ -5,15 +5,16 @@ import { delSongThunk } from '../../store/songs';
 
 import css from './DeleteSong.module.css'
 
-const DeleteComment = ({ onClose, song }) => {
+const DeleteSong = ({ onClose, song }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const deleteFunc = async () => {
         const toDelete = song.id;
+        // const reDirectUser = song.user_id;
 
         await dispatch(delSongThunk(toDelete));
-        history.push(`/users/${song.user_id}`);
+        history.push('/');
     }
 
     return (
@@ -31,4 +32,4 @@ const DeleteComment = ({ onClose, song }) => {
     )
 }
 
-export default DeleteComment;
+export default DeleteSong;

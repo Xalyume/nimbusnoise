@@ -3,7 +3,7 @@ Live link: https://nimbusnoise.herokuapp.com/
 
 ## Welcome to Nimbus Noise.
 ![user landing page](https://cdn.discordapp.com/attachments/861029914253328404/904432294360674394/unknown.png)
-Nimbus Noise is a full stack application developed using a React frontend and Postgres through Flask Alchemy on the backend.
+Nimbus Noise is a full stack application developed using a React frontend and Postgres through Flask SQLAlchemy on the backend.
 Nimbus Noise allows users to sign up, add albums, add songs to those albums, and listen to those songs.
 In addition, users are also able to navigate to other user's songs and listen/leave comments as well.
 

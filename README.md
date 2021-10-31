@@ -47,6 +47,7 @@ After signing up/logging in the users are able to do the following:
 <img src="https://cdn.discordapp.com/attachments/861029914253328404/904436733335187456/unknown.png" width="300" height="300"/>
 
 * After successfully uploading a song, the user should be redircted to the song page that displays the basic information regarding the song as well as a box displaying all of the comments on the song.
+ * On the song page, the user can click on the play button displayed on the left side of the song card to have the media player at the bottom start playing that song.
 
 ![song_page](https://cdn.discordapp.com/attachments/904438142063501353/904439316187602964/unknown.png)
 

@@ -35,6 +35,8 @@ function SongForm() {
     const addSong = async (e) => {
         e.preventDefault();
 
+        setErrors([]);
+
         const formData = new FormData();
 
         formData.append("user_id", sessionUser.id);

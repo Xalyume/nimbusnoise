@@ -77,6 +77,8 @@ function SongPage() {
     const addComment = async (e) => {
         e.preventDefault();
 
+        setError("");
+
         if (!newComment) {
             setError("Please add a comment")
         }

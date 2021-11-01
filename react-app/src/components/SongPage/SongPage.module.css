@@ -101,3 +101,9 @@
 .add_comment {
   cursor: pointer;
 }
+
+.comment_error {
+  font-size: small;
+  color: red;
+  text-align: center;
+}

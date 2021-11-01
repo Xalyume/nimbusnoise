@@ -27,6 +27,7 @@ function SongPage() {
 
     const [editButtons, setEditButtons] = useState(false);
     const [newComment, setNewComment] = useState("");
+    const [error, setError] = useState("");
     // const [, setNewRender] = useState({});
 
     const song = songs[songId];
@@ -76,6 +77,10 @@ function SongPage() {
     const addComment = async (e) => {
         e.preventDefault();
 
+        if (!newComment) {
+            setError("Please add a comment")
+        }
+
         const comment = {
             user_id: sessionUser.id,
             song_id: song.id,
@@ -103,6 +108,7 @@ function SongPage() {
     if (sessionUser) {
         addCommentBtn = (
             <form onSubmit={addComment}>
+                {error && <p className={css.comment_error}>{error}</p>}
                 <input
                     placeholder='Add a comment'
                     value={newComment}

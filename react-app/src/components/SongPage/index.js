@@ -18,7 +18,7 @@ function SongPage() {
     const history = useHistory();
     const dispatch = useDispatch();
     const { songId } = useParams();
-    const { setCurrentSong } = useCurrentSong();
+    const { currentSong, setCurrentSong } = useCurrentSong();
 
     const songs = useSelector((state) => state.songs);
     const albums = useSelector((state) => state.albums);
@@ -68,10 +68,28 @@ function SongPage() {
 
     const newDate = song?.created_at.split(" ");
 
+    let isPlaying;
     const playSong = async () => {
-        await setCurrentSong(song?.song_file);
         const audio = document.getElementById("media_player");
-        audio.play();
+
+        if (currentSong === song?.song_file) {
+            console.log("hit the current song if statement")
+            console.log(isPlaying)
+            if (isPlaying === true) {
+                console.log("hit the isPlaying true if statement!")
+                isPlaying = false;
+                audio.pause();
+            } else {
+                isPlaying = true;
+                audio.play();
+            }
+        } else {
+            await setCurrentSong(song?.song_file);
+            // const audio = document.getElementById("media_player");
+            isPlaying = true;
+            audio.play();
+        }
+
     }
 
     const addComment = async (e) => {

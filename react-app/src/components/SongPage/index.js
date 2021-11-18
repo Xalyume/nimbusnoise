@@ -68,10 +68,11 @@ function SongPage() {
 
     const newDate = song?.created_at.split(" ");
 
-    console.log(isPlaying);
     let playBtn;
     const audio = document.getElementById("media_player");
+
     const playSong = async () => {
+        console.log("on click function", isPlaying);
 
         if (currentSong === song?.song_file) {
             if (isPlaying === true) {
@@ -92,7 +93,6 @@ function SongPage() {
         } else {
             await setCurrentSong(song?.song_file);
             await setIsPlaying(true);
-            // const audio = document.getElementById("media_player");
             audio.play();
             playBtn = (
                 <BsPauseCircle />
@@ -102,7 +102,7 @@ function SongPage() {
     };
 
     if (currentSong === song?.song_file) {
-        if (isPlaying) {
+        if (!isPlaying) {
             playBtn = (
                 <BsFillPlayCircleFill />
 

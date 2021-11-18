@@ -56,7 +56,10 @@
 }
 
 .inner_drop {
-    margin: 10px 0;
+    /* margin: 10px 0; */
+    padding: 10px 0;
+    border-bottom: 1px solid #87CEEB;
+    text-align: center;
 }
 
 .drop_text {

@@ -83,7 +83,7 @@ const NavBar = () => {
 								<div className={css.inner_drop}>
 									<Link to={`/users/${currentUser.id}`}
 										className={css.drop_text}>
-										{currentUser.username}
+										My Profile
 									</Link>
 								</div>
 								<div className={css.inner_drop}>

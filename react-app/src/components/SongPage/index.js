@@ -10,7 +10,7 @@ import Comments from "../Comments";
 import DeleteSongModal from '../DeleteSongModal';
 import EditSongModal from '../EditSongModal';
 
-import { BsFillPlayCircleFill } from 'react-icons/bs'
+import { BsPauseCircle, BsFillPlayCircleFill } from 'react-icons/bs';
 
 import css from './SongPage.module.css'
 
@@ -18,7 +18,7 @@ function SongPage() {
     const history = useHistory();
     const dispatch = useDispatch();
     const { songId } = useParams();
-    const { currentSong, setCurrentSong } = useCurrentSong();
+    const { currentSong, setCurrentSong, isPlaying, setIsPlaying } = useCurrentSong();
 
     const songs = useSelector((state) => state.songs);
     const albums = useSelector((state) => state.albums);
@@ -68,28 +68,55 @@ function SongPage() {
 
     const newDate = song?.created_at.split(" ");
 
-    let isPlaying;
+    console.log(isPlaying);
+    let playBtn;
+    const audio = document.getElementById("media_player");
     const playSong = async () => {
-        const audio = document.getElementById("media_player");
 
         if (currentSong === song?.song_file) {
-            console.log("hit the current song if statement")
-            console.log(isPlaying)
             if (isPlaying === true) {
-                console.log("hit the isPlaying true if statement!")
-                isPlaying = false;
+                await setIsPlaying(false);
+                console.log("if song page is playing,", isPlaying)
                 audio.pause();
+                playBtn = (
+                    <BsFillPlayCircleFill />
+                )
             } else {
-                isPlaying = true;
+                await setIsPlaying(true);
+                console.log("if song page isn't playing,", isPlaying)
                 audio.play();
+                playBtn = (
+                    <BsPauseCircle />
+                )
             }
         } else {
             await setCurrentSong(song?.song_file);
+            await setIsPlaying(true);
             // const audio = document.getElementById("media_player");
-            isPlaying = true;
             audio.play();
+            playBtn = (
+                <BsPauseCircle />
+            )
+            console.log("first click", isPlaying)
         }
+    };
 
+    if (currentSong === song?.song_file) {
+        if (isPlaying) {
+            playBtn = (
+                <BsFillPlayCircleFill />
+
+            )
+        } else {
+            playBtn = (
+                <BsPauseCircle />
+            )
+        }
+    } else {
+        playBtn = (
+            <BsFillPlayCircleFill />
+
+        )
     }
 
     const addComment = async (e) => {
@@ -153,7 +180,8 @@ function SongPage() {
                     <div className={css.play_container}>
                         <button onClick={playSong}
                             className={css.play_button}>
-                            <BsFillPlayCircleFill />
+                            {/* <BsFillPlayCircleFill /> */}
+                            {playBtn}
                         </button>
                     </div>
                     <div>

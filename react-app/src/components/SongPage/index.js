@@ -72,32 +72,19 @@ function SongPage() {
     const audio = document.getElementById("media_player");
 
     const playSong = async () => {
-        console.log("on click function", isPlaying);
 
         if (currentSong === song?.song_file) {
             if (isPlaying === true) {
                 await setIsPlaying(false);
-                console.log("if song page is playing,", isPlaying)
                 audio.pause();
-                playBtn = (
-                    <BsFillPlayCircleFill />
-                )
             } else {
                 await setIsPlaying(true);
-                console.log("if song page isn't playing,", isPlaying)
                 audio.play();
-                playBtn = (
-                    <BsPauseCircle />
-                )
             }
         } else {
             await setCurrentSong(song?.song_file);
             await setIsPlaying(true);
             audio.play();
-            playBtn = (
-                <BsPauseCircle />
-            )
-            console.log("first click", isPlaying)
         }
     };
 

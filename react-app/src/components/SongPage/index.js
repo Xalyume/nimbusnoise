@@ -69,7 +69,6 @@ function SongPage() {
 
 
     const playSong = async () => {
-        console.log("does this change", playingRef.current)
 
         if (currentSong === song?.song_file) {
             if (audio.paused === false) {

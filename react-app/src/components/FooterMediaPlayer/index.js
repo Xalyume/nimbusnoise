@@ -11,10 +11,11 @@ function FooterMediaPlayer() {
         <div className={css.footer_container}>
             <ReactAudioPlayer
                 src={currentSong}
+                preload
                 controls
                 volume={.5}
                 id="media_player"
-                style={{ width: '80%',}}
+                style={{ width: '80%', }}
             />
         </div>
     )

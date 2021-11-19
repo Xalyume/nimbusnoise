@@ -10,8 +10,6 @@ import Comments from "../Comments";
 import DeleteSongModal from '../DeleteSongModal';
 import EditSongModal from '../EditSongModal';
 
-// import { BsPauseCircle, BsFillPlayCircleFill } from 'react-icons/bs';
-
 import css from './SongPage.module.css'
 
 function SongPage() {
@@ -29,12 +27,10 @@ function SongPage() {
     const [editButtons, setEditButtons] = useState(false);
     const [newComment, setNewComment] = useState("");
     const [error, setError] = useState("");
-    // const [, setNewRender] = useState({});
 
+    let user;
     const song = songs[songId];
     const newDate = song?.created_at.split(" ");
-    let user;
-    // let playBtn;
     const audio = document.getElementById("media_player");
 
     const albumArr = Object.values(albums)
@@ -57,18 +53,6 @@ function SongPage() {
         dispatch(getUsers())
     }, [dispatch])
 
-    // useEffect(() => {
-    //     if (currentSong === song?.song_file) {
-    //         if (audio.paused) {
-    //             playingRef.current = "fas fa-play-circle"
-    //         } else {
-    //             playingRef.current = "fas fa-pause-circle"
-    //         }
-    //     } else {
-    //         playingRef.current = "fas fa-play-circle"
-    //     }
-    // }, [song, currentSong, audio?.paused])
-
     useEffect(() => {
         if (sessionUser?.id) {
             if (sessionUser?.id === song?.user_id) {
@@ -89,34 +73,17 @@ function SongPage() {
 
         if (currentSong === song?.song_file) {
             if (audio.paused === false) {
-                // await setIsPlaying(false);
                 audio.pause();
             } else {
-                // await setIsPlaying(true);
                 audio.play();
             }
         } else {
             await setCurrentSong(song?.song_file);
-            // await setIsPlaying(true);
             audio.play();
         }
     };
 
-    // if (currentSong === song?.song_file) {
-    //     if (audio.paused) {
-    //         playBtn = (
-    //             <BsPauseCircle />
-    //         )
-    //     } else {
-    //         playBtn = (
-    //             <BsFillPlayCircleFill />
-    //         )
-    //     }
-    // } else {
-    //     playBtn = (
-    //         <BsFillPlayCircleFill />
-    //     )
-    // }
+
 
     const addComment = async (e) => {
         e.preventDefault();

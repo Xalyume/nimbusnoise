@@ -55,7 +55,14 @@ const NavBar = () => {
 				<>
 					<div className={css.dropdown}>
 						<button onClick={openUpload}
-							className={css.dropbtn}>
+							className={css.dropbtn}
+							style={(
+								uploadMenu ? {
+									fontWeight: "bold"
+								} : {
+									fontWeight: "normal"
+								}
+							)}>
 							Upload
 						</button>
 						{uploadMenu && (
@@ -75,7 +82,14 @@ const NavBar = () => {
 					</div>
 					<div className={css.dropdown}>
 						<button onClick={openUserMenu}
-							className={css.dropbtn}>
+							className={css.dropbtn}
+							style={(
+								userMenu ? {
+									fontWeight: "bold"
+								} : {
+									fontWeight: "normal"
+								}
+							)}>
 							{currentUser.username}
 						</button>
 						{userMenu && (
@@ -131,7 +145,7 @@ const NavBar = () => {
 			<div className={css.left_container}>
 				{loggedInTwo()}
 				<NavLink to="/contact-us"
-				className={css.contact_us}>About Us</NavLink>
+					className={css.contact_us}>About Us</NavLink>
 			</div>
 			<div className={css.right_container}>
 				<NavLink to='/users' exact={true} >

@@ -1,6 +1,11 @@
 .drop_text {
     font-size: small;
     color: black;
-    text-align: left;
+    text-align: center;
     margin: 0;
+}
+
+.drop_text:hover {
+    color: #87cfeb;
+    font-weight: bold;
 }

@@ -1,0 +1,33 @@
+    // import { BsPauseCircle, BsFillPlayCircleFill } from 'react-icons/bs';
+
+
+    // if (currentSong === song?.song_file) {
+    //     if (audio.paused) {
+    //         playBtn = (
+    //             <BsPauseCircle />
+    //         )
+    //     } else {
+    //         playBtn = (
+    //             <BsFillPlayCircleFill />
+    //         )
+    //     }
+    // } else {
+    //     playBtn = (
+    //         <BsFillPlayCircleFill />
+    //     )
+    // }
+
+    // useEffect(() => {
+    //     if (currentSong === song?.song_file) {
+    //         if (audio.paused) {
+    //             playingRef.current = "fas fa-play-circle"
+    //         } else {
+    //             playingRef.current = "fas fa-pause-circle"
+    //         }
+    //     } else {
+    //         playingRef.current = "fas fa-play-circle"
+    //     }
+    // }, [song, currentSong, audio?.paused])
+
+
+issue with having react icon render inconsistently between play and pause button -  did not sync with the react audio player package.

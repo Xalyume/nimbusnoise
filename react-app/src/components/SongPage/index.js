@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCurrentSong } from '../../context/SongPlayer'
@@ -10,15 +10,14 @@ import Comments from "../Comments";
 import DeleteSongModal from '../DeleteSongModal';
 import EditSongModal from '../EditSongModal';
 
-import { BsPauseCircle, BsFillPlayCircleFill } from 'react-icons/bs';
-
 import css from './SongPage.module.css'
 
 function SongPage() {
     const history = useHistory();
     const dispatch = useDispatch();
     const { songId } = useParams();
-    const { currentSong, setCurrentSong, isPlaying, setIsPlaying } = useCurrentSong();
+    const { currentSong, setCurrentSong } = useCurrentSong();
+    const playingRef = useRef();
 
     const songs = useSelector((state) => state.songs);
     const albums = useSelector((state) => state.albums);
@@ -28,10 +27,15 @@ function SongPage() {
     const [editButtons, setEditButtons] = useState(false);
     const [newComment, setNewComment] = useState("");
     const [error, setError] = useState("");
-    // const [, setNewRender] = useState({});
 
-    const song = songs[songId];
     let user;
+    const song = songs[songId];
+    const newDate = song?.created_at.split(" ");
+    const audio = document.getElementById("media_player");
+
+    const albumArr = Object.values(albums)
+    const songAlbum = albumArr.find(album => album["id"] === song["album_id"])
+
     if (song) {
         const userId = song["user_id"];
         user = userList[userId];
@@ -63,48 +67,23 @@ function SongPage() {
         history.push("/users");
     }
 
-    const albumArr = Object.values(albums)
-    const songAlbum = albumArr.find(album => album["id"] === song["album_id"])
-
-    const newDate = song?.created_at.split(" ");
-
-    let playBtn;
-    const audio = document.getElementById("media_player");
 
     const playSong = async () => {
+        console.log("does this change", playingRef.current)
 
         if (currentSong === song?.song_file) {
-            if (isPlaying === true) {
-                await setIsPlaying(false);
+            if (audio.paused === false) {
                 audio.pause();
             } else {
-                await setIsPlaying(true);
                 audio.play();
             }
         } else {
             await setCurrentSong(song?.song_file);
-            await setIsPlaying(true);
             audio.play();
         }
     };
 
-    if (currentSong === song?.song_file) {
-        if (!isPlaying) {
-            playBtn = (
-                <BsFillPlayCircleFill />
 
-            )
-        } else {
-            playBtn = (
-                <BsPauseCircle />
-            )
-        }
-    } else {
-        playBtn = (
-            <BsFillPlayCircleFill />
-
-        )
-    }
 
     const addComment = async (e) => {
         e.preventDefault();
@@ -166,9 +145,12 @@ function SongPage() {
                 <div className={css.song_info_card}>
                     <div className={css.play_container}>
                         <button onClick={playSong}
-                            className={css.play_button}>
-                            {/* <BsFillPlayCircleFill /> */}
-                            {playBtn}
+                            className={`${css.play_button} fas fa-music`}
+                            ref={playingRef}
+                        >
+                            <p className={css.play_pause_text}>
+                                Play | Pause
+                            </p>
                         </button>
                     </div>
                     <div>

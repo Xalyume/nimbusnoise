@@ -4,10 +4,10 @@ export const SongPlayer = createContext();
 
 export const SongProvider = (props) => {
     const [currentSong, setCurrentSong] = useState("")
-    const [isPlaying, setIsPlaying] = useState(true)
+    // const [isPlaying, setIsPlaying] = useState(false)
 
     return (
-        <SongPlayer.Provider value={{ currentSong, setCurrentSong, isPlaying, setIsPlaying }}>
+        <SongPlayer.Provider value={{ currentSong, setCurrentSong, }}>
             {props.children}
         </SongPlayer.Provider>
     )

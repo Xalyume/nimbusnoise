@@ -35,13 +35,7 @@ function User() {
 
 	useEffect(() => {
 		dispatch(getAlbum())
-	}, [dispatch])
-
-	useEffect(() => {
 		dispatch(getSongThunk())
-	}, [dispatch])
-
-	useEffect(() => {
 		dispatch(getUsers())
 	}, [dispatch])
 

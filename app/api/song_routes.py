@@ -4,7 +4,7 @@ from flask_login import login_required
 from flask_wtf.form import FlaskForm
 from app.models import Song, db
 
-from app.aws import upload_file_to_s3, allowed_file, get_unique_filename
+from app.aws import upload_file_to_s3, allowed_file, get_unique_filename, delete_from_s3
 from app.forms import SongForm
 
 song_routes = Blueprint('songs', __name__)
@@ -36,6 +36,12 @@ def add_song():
     Song post route. Check the song filename and upload to AWS that will return a URL if upload is successful
     '''
 
+    form = SongForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if not form.validate_on_submit():
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
     if 'song_file' not in request.files:
         return {"errors": ['Please upload a file.']}, 400
 
@@ -49,8 +55,6 @@ def add_song():
     if 'url' not in upload:
         return upload, 400
 
-    form = SongForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         url = upload['url']
@@ -64,8 +68,6 @@ def add_song():
         db.session.add(new_song)
         db.session.commit()
         return new_song.to_dict()
-    else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 
@@ -96,7 +98,10 @@ def del_song(id):
     if not song_to_delete:
         return 'Nothing to delete'
     else:
+        song_url = song_to_delete.song_file
 
         db.session.delete(song_to_delete)
         db.session.commit()
+
+        delete_from_s3(song_url)
         return {"ok": True}

@@ -13,12 +13,12 @@ const get = (song) => ({
     payload: song,
 });
 
-const edit = song => ({
+const edit = (song) => ({
     type: EDIT_SONG,
     payload: song,
 })
 
-const del = song => ({
+const del = (song) => ({
     type: DEL_SONG,
     payload: song,
 })
@@ -72,9 +72,9 @@ export const delSongThunk = (id) => async (dispatch) => {
     });
 
     if (res.ok) {
-        // await res.json();
-        await dispatch(del(id));
-        return { ok: true }
+        await res.json();
+        dispatch(del(id));
+        return null;
     }
 }
 

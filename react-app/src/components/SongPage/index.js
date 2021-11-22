@@ -36,22 +36,16 @@ function SongPage() {
     const albumArr = Object.values(albums)
     const songAlbum = albumArr.find(album => album["id"] === song["album_id"])
 
+    useEffect(() => {
+        dispatch(getSongThunk())
+        dispatch(getAlbum())
+        dispatch(getUsers())
+    }, [dispatch])
+
     if (song) {
         const userId = song["user_id"];
         user = userList[userId];
     }
-
-    useEffect(() => {
-        dispatch(getSongThunk())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(getAlbum())
-    }, [dispatch])
-
-    useEffect(() => {
-        dispatch(getUsers())
-    }, [dispatch])
 
     useEffect(() => {
         if (sessionUser?.id) {
@@ -61,12 +55,11 @@ function SongPage() {
         }
     }, [sessionUser?.id, song?.user_id]);
 
-    if (!song) return null;
-
     if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
         history.push("/users");
     }
 
+    if (!song) return null;
 
     const playSong = async () => {
 
@@ -81,8 +74,6 @@ function SongPage() {
             audio.play();
         }
     };
-
-
 
     const addComment = async (e) => {
         e.preventDefault();

@@ -12,7 +12,7 @@ const DeleteAlbum = ({ onClose, album }) => {
     const deleteFunc = async () => {
         const toDelete = album.id
 
-        await dispatch(deleteAlbumThunk(toDelete))
+        await dispatch(deleteAlbumThunk(toDelete));
         history.push(`/users/${album.user_id}`);
     }
 

@@ -46,6 +46,7 @@
 .button_container {
     display: flex;
     justify-content: space-evenly;
+    padding: 1% 0;
 }
 
 .button {

@@ -35,12 +35,8 @@ function AlbumPage() {
         }
     }, [sessionUser?.id, album?.user_id]);
 
-
     useEffect(() => {
         dispatch(getAlbum())
-    }, [dispatch])
-
-    useEffect(() => {
         dispatch(getSongThunk())
     }, [dispatch])
 

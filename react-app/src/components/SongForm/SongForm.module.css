@@ -56,6 +56,7 @@ input[type="file"] {
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 3%;
+    padding: 2.3% 0;
 }
 
 .errors {

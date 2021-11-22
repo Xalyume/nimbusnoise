@@ -13,7 +13,7 @@ const DeleteSong = ({ onClose, song }) => {
         const toDelete = song.id;
         // const reDirectUser = song.user_id;
 
-        await dispatch(delSongThunk(toDelete));
+        dispatch(delSongThunk(toDelete));
         history.push(`/users/${song.user_id}`);
     }
 

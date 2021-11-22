@@ -58,7 +58,7 @@ function SongPage() {
     if (Object.keys(songs).length !== 0 && songs[songId] === undefined) {
         history.push("/users");
     }
-    
+
     if (!song) return null;
 
     const playSong = async () => {

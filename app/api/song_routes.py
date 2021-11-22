@@ -99,8 +99,9 @@ def del_song(id):
         return 'Nothing to delete'
     else:
         song_url = song_to_delete.song_file
-        delete_from_s3(song_url)
 
         db.session.delete(song_to_delete)
         db.session.commit()
-        return {"res": True}
+
+        delete_from_s3(song_url)
+        return {"ok": True}

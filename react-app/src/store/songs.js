@@ -72,11 +72,9 @@ export const delSongThunk = (id) => async (dispatch) => {
     });
 
     if (res.ok) {
-        // await res.json();
-        
-
-        await dispatch(del(id));
-        return { ok: true }
+        await res.json();
+        dispatch(del(id));
+        return null;
     }
 }
 

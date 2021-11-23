@@ -6,7 +6,7 @@
     align-content: center; */
     height: 400px;
     width: 100%;
-    padding: 5%;
+    padding: 8%;
 }
 
 .title_tag {
@@ -39,7 +39,7 @@
     border: 1px solid black;
     border-radius: 3px;
     padding: 2%;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -54,6 +54,7 @@
 .btn{
     font-size: 15px;
     color: #87CEEB;
+    font-size: 16px;
     cursor: pointer;
     margin: 3% 0;
     width: 30%;

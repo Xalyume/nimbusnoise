@@ -7,7 +7,7 @@
     /* align-content: center; */
     height: 350px;
     width: 100%;
-    padding: 5%;
+    padding: 8%;
 }
 
 .title_tag {
@@ -41,7 +41,7 @@
     /* margin-left: 3px; */
     padding: 2%;
     border-radius: 1px;
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -55,6 +55,7 @@
 
 .btn{
     font-size: 15px;
+    font-size: 16px;
     color: #87CEEB;
     cursor: pointer;
     margin: 2% 0;

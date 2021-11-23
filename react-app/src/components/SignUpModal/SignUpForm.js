@@ -60,7 +60,7 @@ const SignUpForm = ({ onClose }) => {
 				))}
 			</div>
 			<div>
-				<div>
+				<div className={css.labels}>
 					<label>User Name</label>
 				</div>
 				<input
@@ -73,7 +73,7 @@ const SignUpForm = ({ onClose }) => {
 				></input>
 			</div>
 			<div>
-				<div>
+				<div className={css.labels}>
 					<label>Email</label>
 				</div>
 				<input
@@ -86,7 +86,7 @@ const SignUpForm = ({ onClose }) => {
 				></input>
 			</div>
 			<div>
-				<div>
+				<div className={css.labels}>
 					<label>Password</label>
 				</div>
 				<input
@@ -99,7 +99,7 @@ const SignUpForm = ({ onClose }) => {
 				></input>
 			</div>
 			<div>
-				<div>
+				<div className={css.labels}>
 					<label>Confirm Password</label>
 				</div>
 				<input
@@ -112,7 +112,9 @@ const SignUpForm = ({ onClose }) => {
 					className={css.input_bar}
 				></input>
 			</div>
-			<button type='submit' className={css.btn}>Sign Up</button>
+			<div className={css.login_btns}>
+				<button type='submit' className={css.btn}>Sign Up</button>
+			</div>
 		</form>
 	);
 };

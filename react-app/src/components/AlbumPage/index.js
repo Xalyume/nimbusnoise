@@ -64,7 +64,7 @@ function AlbumPage() {
                         {deleteButton}
                     </div>
                     <div>
-                        Number of Songs: {Object.values(album["songs"]).length}
+                        Number of Tracks: {Object.values(album["songs"]).length}
                     </div>
                 </div>
                 <div
@@ -78,7 +78,7 @@ function AlbumPage() {
             <fieldset className={css.songs_container}>
                 <legend>Songlist:</legend>
                 {Object.values(album["songs"]).map((song, index) => (
-                    <li key={song.id}>
+                    <li key={song.id} className={css.song_li}>
                         <span className={css.track_num}>Track {index + 1}: </span>
                         <Link
                             to={`/songs/${song.id}`}

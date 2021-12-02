@@ -45,3 +45,11 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 }
+
+.song_li {
+    padding: .8% .5%;
+}
+
+.song_li:hover {
+    background-color: #ace7ffb7;
+}
